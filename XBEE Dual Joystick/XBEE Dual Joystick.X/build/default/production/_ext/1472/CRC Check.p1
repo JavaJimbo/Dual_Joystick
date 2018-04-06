@@ -1,0 +1,666 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"24 ../CRC Check.c
+[v _crc_tab16 `Cus ~T0 @X0 -> 256 `i e ]
+[i _crc_tab16
+:U ..
+"25
+-> -> 0 `i `us
+-> -> 49345 `ui `us
+-> -> 49537 `ui `us
+-> -> 320 `i `us
+-> -> 49921 `ui `us
+-> -> 960 `i `us
+-> -> 640 `i `us
+-> -> 49729 `ui `us
+-> -> 50689 `ui `us
+-> -> 1728 `i `us
+-> -> 1920 `i `us
+-> -> 51009 `ui `us
+-> -> 1280 `i `us
+-> -> 50625 `ui `us
+-> -> 50305 `ui `us
+-> -> 1088 `i `us
+"26
+-> -> 52225 `ui `us
+-> -> 3264 `i `us
+-> -> 3456 `i `us
+-> -> 52545 `ui `us
+-> -> 3840 `i `us
+-> -> 53185 `ui `us
+-> -> 52865 `ui `us
+-> -> 3648 `i `us
+-> -> 2560 `i `us
+-> -> 51905 `ui `us
+-> -> 52097 `ui `us
+-> -> 2880 `i `us
+-> -> 51457 `ui `us
+-> -> 2496 `i `us
+-> -> 2176 `i `us
+-> -> 51265 `ui `us
+"27
+-> -> 55297 `ui `us
+-> -> 6336 `i `us
+-> -> 6528 `i `us
+-> -> 55617 `ui `us
+-> -> 6912 `i `us
+-> -> 56257 `ui `us
+-> -> 55937 `ui `us
+-> -> 6720 `i `us
+-> -> 7680 `i `us
+-> -> 57025 `ui `us
+-> -> 57217 `ui `us
+-> -> 8000 `i `us
+-> -> 56577 `ui `us
+-> -> 7616 `i `us
+-> -> 7296 `i `us
+-> -> 56385 `ui `us
+"28
+-> -> 5120 `i `us
+-> -> 54465 `ui `us
+-> -> 54657 `ui `us
+-> -> 5440 `i `us
+-> -> 55041 `ui `us
+-> -> 6080 `i `us
+-> -> 5760 `i `us
+-> -> 54849 `ui `us
+-> -> 53761 `ui `us
+-> -> 4800 `i `us
+-> -> 4992 `i `us
+-> -> 54081 `ui `us
+-> -> 4352 `i `us
+-> -> 53697 `ui `us
+-> -> 53377 `ui `us
+-> -> 4160 `i `us
+"29
+-> -> 61441 `ui `us
+-> -> 12480 `i `us
+-> -> 12672 `i `us
+-> -> 61761 `ui `us
+-> -> 13056 `i `us
+-> -> 62401 `ui `us
+-> -> 62081 `ui `us
+-> -> 12864 `i `us
+-> -> 13824 `i `us
+-> -> 63169 `ui `us
+-> -> 63361 `ui `us
+-> -> 14144 `i `us
+-> -> 62721 `ui `us
+-> -> 13760 `i `us
+-> -> 13440 `i `us
+-> -> 62529 `ui `us
+"30
+-> -> 15360 `i `us
+-> -> 64705 `ui `us
+-> -> 64897 `ui `us
+-> -> 15680 `i `us
+-> -> 65281 `ui `us
+-> -> 16320 `i `us
+-> -> 16000 `i `us
+-> -> 65089 `ui `us
+-> -> 64001 `ui `us
+-> -> 15040 `i `us
+-> -> 15232 `i `us
+-> -> 64321 `ui `us
+-> -> 14592 `i `us
+-> -> 63937 `ui `us
+-> -> 63617 `ui `us
+-> -> 14400 `i `us
+"31
+-> -> 10240 `i `us
+-> -> 59585 `ui `us
+-> -> 59777 `ui `us
+-> -> 10560 `i `us
+-> -> 60161 `ui `us
+-> -> 11200 `i `us
+-> -> 10880 `i `us
+-> -> 59969 `ui `us
+-> -> 60929 `ui `us
+-> -> 11968 `i `us
+-> -> 12160 `i `us
+-> -> 61249 `ui `us
+-> -> 11520 `i `us
+-> -> 60865 `ui `us
+-> -> 60545 `ui `us
+-> -> 11328 `i `us
+"32
+-> -> 58369 `ui `us
+-> -> 9408 `i `us
+-> -> 9600 `i `us
+-> -> 58689 `ui `us
+-> -> 9984 `i `us
+-> -> 59329 `ui `us
+-> -> 59009 `ui `us
+-> -> 9792 `i `us
+-> -> 8704 `i `us
+-> -> 58049 `ui `us
+-> -> 58241 `ui `us
+-> -> 9024 `i `us
+-> -> 57601 `ui `us
+-> -> 8640 `i `us
+-> -> 8320 `i `us
+-> -> 57409 `ui `us
+"33
+-> -> 40961 `ui `us
+-> -> 24768 `i `us
+-> -> 24960 `i `us
+-> -> 41281 `ui `us
+-> -> 25344 `i `us
+-> -> 41921 `ui `us
+-> -> 41601 `ui `us
+-> -> 25152 `i `us
+-> -> 26112 `i `us
+-> -> 42689 `ui `us
+-> -> 42881 `ui `us
+-> -> 26432 `i `us
+-> -> 42241 `ui `us
+-> -> 26048 `i `us
+-> -> 25728 `i `us
+-> -> 42049 `ui `us
+"34
+-> -> 27648 `i `us
+-> -> 44225 `ui `us
+-> -> 44417 `ui `us
+-> -> 27968 `i `us
+-> -> 44801 `ui `us
+-> -> 28608 `i `us
+-> -> 28288 `i `us
+-> -> 44609 `ui `us
+-> -> 43521 `ui `us
+-> -> 27328 `i `us
+-> -> 27520 `i `us
+-> -> 43841 `ui `us
+-> -> 26880 `i `us
+-> -> 43457 `ui `us
+-> -> 43137 `ui `us
+-> -> 26688 `i `us
+"35
+-> -> 30720 `i `us
+-> -> 47297 `ui `us
+-> -> 47489 `ui `us
+-> -> 31040 `i `us
+-> -> 47873 `ui `us
+-> -> 31680 `i `us
+-> -> 31360 `i `us
+-> -> 47681 `ui `us
+-> -> 48641 `ui `us
+-> -> 32448 `i `us
+-> -> 32640 `i `us
+-> -> 48961 `ui `us
+-> -> 32000 `i `us
+-> -> 48577 `ui `us
+-> -> 48257 `ui `us
+-> -> 31808 `i `us
+"36
+-> -> 46081 `ui `us
+-> -> 29888 `i `us
+-> -> 30080 `i `us
+-> -> 46401 `ui `us
+-> -> 30464 `i `us
+-> -> 47041 `ui `us
+-> -> 46721 `ui `us
+-> -> 30272 `i `us
+-> -> 29184 `i `us
+-> -> 45761 `ui `us
+-> -> 45953 `ui `us
+-> -> 29504 `i `us
+-> -> 45313 `ui `us
+-> -> 29120 `i `us
+-> -> 28800 `i `us
+-> -> 45121 `ui `us
+"37
+-> -> 20480 `i `us
+-> -> 37057 `ui `us
+-> -> 37249 `ui `us
+-> -> 20800 `i `us
+-> -> 37633 `ui `us
+-> -> 21440 `i `us
+-> -> 21120 `i `us
+-> -> 37441 `ui `us
+-> -> 38401 `ui `us
+-> -> 22208 `i `us
+-> -> 22400 `i `us
+-> -> 38721 `ui `us
+-> -> 21760 `i `us
+-> -> 38337 `ui `us
+-> -> 38017 `ui `us
+-> -> 21568 `i `us
+"38
+-> -> 39937 `ui `us
+-> -> 23744 `i `us
+-> -> 23936 `i `us
+-> -> 40257 `ui `us
+-> -> 24320 `i `us
+-> -> 40897 `ui `us
+-> -> 40577 `ui `us
+-> -> 24128 `i `us
+-> -> 23040 `i `us
+-> -> 39617 `ui `us
+-> -> 39809 `ui `us
+-> -> 23360 `i `us
+-> -> 39169 `ui `us
+-> -> 22976 `i `us
+-> -> 22656 `i `us
+-> -> 38977 `ui `us
+"39
+-> -> 34817 `ui `us
+-> -> 18624 `i `us
+-> -> 18816 `i `us
+-> -> 35137 `ui `us
+-> -> 19200 `i `us
+-> -> 35777 `ui `us
+-> -> 35457 `ui `us
+-> -> 19008 `i `us
+-> -> 19968 `i `us
+-> -> 36545 `ui `us
+-> -> 36737 `ui `us
+-> -> 20288 `i `us
+-> -> 36097 `ui `us
+-> -> 19904 `i `us
+-> -> 19584 `i `us
+-> -> 35905 `ui `us
+"40
+-> -> 17408 `i `us
+-> -> 33985 `ui `us
+-> -> 34177 `ui `us
+-> -> 17728 `i `us
+-> -> 34561 `ui `us
+-> -> 18368 `i `us
+-> -> 18048 `i `us
+-> -> 34369 `ui `us
+-> -> 33281 `ui `us
+-> -> 17088 `i `us
+-> -> 17280 `i `us
+-> -> 33601 `ui `us
+-> -> 16640 `i `us
+-> -> 33217 `ui `us
+-> -> 32897 `ui `us
+"41
+-> -> 16448 `i `us
+..
+]
+[; ;CRC Check.c: 24: const unsigned short crc_tab16[256]={
+[; ;CRC Check.c: 25: 0x0,0xC0C1,0xC181,0x140,0xC301,0x3C0,0x280,0xC241,0xC601,0x6C0,0x780,0xC741,0x500,0xC5C1,0xC481,0x440,
+[; ;CRC Check.c: 26: 0xCC01,0xCC0,0xD80,0xCD41,0xF00,0xCFC1,0xCE81,0xE40,0xA00,0xCAC1,0xCB81,0xB40,0xC901,0x9C0,0x880,0xC841,
+[; ;CRC Check.c: 27: 0xD801,0x18C0,0x1980,0xD941,0x1B00,0xDBC1,0xDA81,0x1A40,0x1E00,0xDEC1,0xDF81,0x1F40,0xDD01,0x1DC0,0x1C80,0xDC41,
+[; ;CRC Check.c: 28: 0x1400,0xD4C1,0xD581,0x1540,0xD701,0x17C0,0x1680,0xD641,0xD201,0x12C0,0x1380,0xD341,0x1100,0xD1C1,0xD081,0x1040,
+[; ;CRC Check.c: 29: 0xF001,0x30C0,0x3180,0xF141,0x3300,0xF3C1,0xF281,0x3240,0x3600,0xF6C1,0xF781,0x3740,0xF501,0x35C0,0x3480,0xF441,
+[; ;CRC Check.c: 30: 0x3C00,0xFCC1,0xFD81,0x3D40,0xFF01,0x3FC0,0x3E80,0xFE41,0xFA01,0x3AC0,0x3B80,0xFB41,0x3900,0xF9C1,0xF881,0x3840,
+[; ;CRC Check.c: 31: 0x2800,0xE8C1,0xE981,0x2940,0xEB01,0x2BC0,0x2A80,0xEA41,0xEE01,0x2EC0,0x2F80,0xEF41,0x2D00,0xEDC1,0xEC81,0x2C40,
+[; ;CRC Check.c: 32: 0xE401,0x24C0,0x2580,0xE541,0x2700,0xE7C1,0xE681,0x2640,0x2200,0xE2C1,0xE381,0x2340,0xE101,0x21C0,0x2080,0xE041,
+[; ;CRC Check.c: 33: 0xA001,0x60C0,0x6180,0xA141,0x6300,0xA3C1,0xA281,0x6240,0x6600,0xA6C1,0xA781,0x6740,0xA501,0x65C0,0x6480,0xA441,
+[; ;CRC Check.c: 34: 0x6C00,0xACC1,0xAD81,0x6D40,0xAF01,0x6FC0,0x6E80,0xAE41,0xAA01,0x6AC0,0x6B80,0xAB41,0x6900,0xA9C1,0xA881,0x6840,
+[; ;CRC Check.c: 35: 0x7800,0xB8C1,0xB981,0x7940,0xBB01,0x7BC0,0x7A80,0xBA41,0xBE01,0x7EC0,0x7F80,0xBF41,0x7D00,0xBDC1,0xBC81,0x7C40,
+[; ;CRC Check.c: 36: 0xB401,0x74C0,0x7580,0xB541,0x7700,0xB7C1,0xB681,0x7640,0x7200,0xB2C1,0xB381,0x7340,0xB101,0x71C0,0x7080,0xB041,
+[; ;CRC Check.c: 37: 0x5000,0x90C1,0x9181,0x5140,0x9301,0x53C0,0x5280,0x9241,0x9601,0x56C0,0x5780,0x9741,0x5500,0x95C1,0x9481,0x5440,
+[; ;CRC Check.c: 38: 0x9C01,0x5CC0,0x5D80,0x9D41,0x5F00,0x9FC1,0x9E81,0x5E40,0x5A00,0x9AC1,0x9B81,0x5B40,0x9901,0x59C0,0x5880,0x9841,
+[; ;CRC Check.c: 39: 0x8801,0x48C0,0x4980,0x8941,0x4B00,0x8BC1,0x8A81,0x4A40,0x4E00,0x8EC1,0x8F81,0x4F40,0x8D01,0x4DC0,0x4C80,0x8C41,
+[; ;CRC Check.c: 40: 0x4400,0x84C1,0x8581,0x4540,0x8701,0x47C0,0x4680,0x8641,0x8201,0x42C0,0x4380,0x8341,0x4100,0x81C1,0x8081,0x4040
+[; ;CRC Check.c: 41: };
+"43
+[v _testBuffer `uc ~T0 @X0 -> 128 `i e ]
+[; ;CRC Check.c: 43: unsigned char testBuffer[128];
+[; ;CRC Check.c: 44: unsigned char reverseByte(unsigned char dataByte);
+"96
+[v _update_crc_16 `(us ~T0 @X0 1 ef2`us`uc ]
+{
+[; ;CRC Check.c: 96: unsigned short update_crc_16 (unsigned short crc, unsigned char nextVal) {
+[e :U _update_crc_16 ]
+[v _crc `us ~T0 @X0 1 r1 ]
+[v _nextVal `uc ~T0 @X0 1 r2 ]
+[f ]
+"97
+[v _tmp `us ~T0 @X0 1 a ]
+[v _shortVal `us ~T0 @X0 1 a ]
+[; ;CRC Check.c: 97: unsigned short tmp, shortVal;
+[; ;CRC Check.c: 99: shortVal = 0x00ff & (unsigned short) nextVal;
+"99
+[e = _shortVal -> & -> -> 255 `i `ui -> -> _nextVal `us `ui `us ]
+[; ;CRC Check.c: 100: tmp = crc^shortVal;
+"100
+[e = _tmp -> ^ -> _crc `ui -> _shortVal `ui `us ]
+[; ;CRC Check.c: 101: crc = (crc >> 8) ^ crc_tab16 [tmp&0xff];
+"101
+[e = _crc -> ^ >> -> _crc `ui -> 8 `i -> *U + &U _crc_tab16 * -> & -> _tmp `ui -> -> 255 `i `ui `ux -> -> # *U &U _crc_tab16 `ui `ux `ui `us ]
+[; ;CRC Check.c: 102: return crc;
+"102
+[e ) _crc ]
+[e $UE 1  ]
+[; ;CRC Check.c: 103: }
+"103
+[e :UE 1 ]
+}
+"112
+[v _CRCcalculate `(us ~T0 @X0 1 ef2`*uc`uc ]
+{
+[; ;CRC Check.c: 112: unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes){
+[e :U _CRCcalculate ]
+[v _message `*uc ~T0 @X0 1 r1 ]
+[v _nBytes `uc ~T0 @X0 1 r2 ]
+[f ]
+"113
+[v _CRCresult `us ~T0 @X0 1 a ]
+[; ;CRC Check.c: 113: unsigned short CRCresult=0xFFFF;
+[e = _CRCresult -> -> 65535 `ui `us ]
+"114
+[v _i `uc ~T0 @X0 1 a ]
+[; ;CRC Check.c: 114: unsigned char i;
+[; ;CRC Check.c: 118: CRCresult=0xFFFF;
+"118
+[e = _CRCresult -> -> 65535 `ui `us ]
+[; ;CRC Check.c: 120: for (i=0; i<nBytes; i++)
+"120
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 6  ]
+"121
+[e :U 3 ]
+[; ;CRC Check.c: 121: CRCresult=update_crc_16 (CRCresult, message[i]);
+[e = _CRCresult ( _update_crc_16 (2 , _CRCresult *U + _message * -> _i `ux -> -> # *U _message `ui `ux ]
+"120
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 6 ]
+[e $ < -> _i `i -> _nBytes `i 3  ]
+[e :U 4 ]
+"121
+}
+[; ;CRC Check.c: 123: return(CRCresult);
+"123
+[e ) _CRCresult ]
+[e $UE 2  ]
+[; ;CRC Check.c: 124: }
+"124
+[e :UE 2 ]
+}
+"129
+[v _reverseByte `(uc ~T0 @X0 1 ef1`uc ]
+{
+[; ;CRC Check.c: 129: unsigned char reverseByte(unsigned char dataByte){
+[e :U _reverseByte ]
+[v _dataByte `uc ~T0 @X0 1 r1 ]
+[f ]
+"130
+[v _i `uc ~T0 @X0 1 a ]
+[v _byteReversed `uc ~T0 @X0 1 a ]
+[v _byteMask `uc ~T0 @X0 1 a ]
+[v _reverseMask `uc ~T0 @X0 1 a ]
+[; ;CRC Check.c: 130: unsigned char i, byteReversed, byteMask, reverseMask;
+[; ;CRC Check.c: 132: byteReversed = 0x00;
+"132
+[e = _byteReversed -> -> 0 `i `uc ]
+[; ;CRC Check.c: 133: byteMask = 0x01;
+"133
+[e = _byteMask -> -> 1 `i `uc ]
+[; ;CRC Check.c: 134: reverseMask = 0x80;
+"134
+[e = _reverseMask -> -> 128 `i `uc ]
+[; ;CRC Check.c: 135: for (i = 0; i < 8; i++) {
+"135
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 8  ]
+[e $U 9  ]
+[e :U 8 ]
+{
+[; ;CRC Check.c: 136: if (dataByte & byteMask) byteReversed |= reverseMask;
+"136
+[e $ ! != & -> _dataByte `i -> _byteMask `i -> 0 `i 11  ]
+[e =| _byteReversed _reverseMask ]
+[e :U 11 ]
+[; ;CRC Check.c: 137: byteMask = byteMask << 1;
+"137
+[e = _byteMask -> << -> _byteMask `i -> 1 `i `uc ]
+[; ;CRC Check.c: 138: reverseMask = reverseMask >> 1;
+"138
+[e = _reverseMask -> >> -> _reverseMask `i -> 1 `i `uc ]
+"139
+}
+"135
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 8  ]
+[e :U 9 ]
+"139
+}
+[; ;CRC Check.c: 139: }
+[; ;CRC Check.c: 140: return (byteReversed);
+"140
+[e ) _byteReversed ]
+[e $UE 7  ]
+[; ;CRC Check.c: 141: }
+"141
+[e :UE 7 ]
+}
+"149
+[v _getCRC7 `(uc ~T0 @X0 1 ef2`*uc`s ]
+{
+[; ;CRC Check.c: 149: unsigned char getCRC7(unsigned char *ptrMessage, short numBytes){
+[e :U _getCRC7 ]
+[v _ptrMessage `*uc ~T0 @X0 1 r1 ]
+[v _numBytes `s ~T0 @X0 1 r2 ]
+[f ]
+"150
+[v _CRCresult `uc ~T0 @X0 1 a ]
+[v _CRCbyte `uc ~T0 @X0 1 a ]
+[v _byteMask `uc ~T0 @X0 1 a ]
+[v _nextByte `uc ~T0 @X0 1 a ]
+"151
+[v _i `s ~T0 @X0 1 a ]
+[; ;CRC Check.c: 150: unsigned char CRCresult, CRCbyte, byteMask, nextByte;
+[; ;CRC Check.c: 151: short i;
+[; ;CRC Check.c: 153: if (ptrMessage == 0 || numBytes == 0) return(0);
+"153
+[e $ ! || == _ptrMessage -> -> 0 `i `*uc == -> _numBytes `i -> 0 `i 13  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 12  ]
+[e :U 13 ]
+[; ;CRC Check.c: 156: CRCbyte = reverseByte(ptrMessage[0]);
+"156
+[e = _CRCbyte ( _reverseByte (1 *U + _ptrMessage * -> -> 0 `i `x -> -> # *U _ptrMessage `i `x ]
+[; ;CRC Check.c: 159: if (numBytes > 1) nextByte = ptrMessage[1];
+"159
+[e $ ! > -> _numBytes `i -> 1 `i 14  ]
+[e = _nextByte *U + _ptrMessage * -> -> 1 `i `x -> -> # *U _ptrMessage `i `x ]
+[e $U 15  ]
+"160
+[e :U 14 ]
+[; ;CRC Check.c: 160: else nextByte = 0x00;
+[e = _nextByte -> -> 0 `i `uc ]
+[e :U 15 ]
+[; ;CRC Check.c: 162: byteMask = 0x01;
+"162
+[e = _byteMask -> -> 1 `i `uc ]
+[; ;CRC Check.c: 163: i = 0;
+"163
+[e = _i -> -> 0 `i `s ]
+[; ;CRC Check.c: 164: while (i < numBytes){
+"164
+[e $U 16  ]
+[e :U 17 ]
+{
+[; ;CRC Check.c: 166: if (CRCbyte & 0x80) CRCbyte = CRCbyte ^ 0b10001001;
+"166
+[e $ ! != & -> _CRCbyte `i -> 128 `i -> 0 `i 19  ]
+[e = _CRCbyte -> ^ -> _CRCbyte `i -> 137 `i `uc ]
+[e :U 19 ]
+[; ;CRC Check.c: 168: CRCbyte = (CRCbyte << 1) & 0xFE;
+"168
+[e = _CRCbyte -> & << -> _CRCbyte `i -> 1 `i -> 254 `i `uc ]
+[; ;CRC Check.c: 170: if (nextByte & byteMask) CRCbyte |= 0x01;
+"170
+[e $ ! != & -> _nextByte `i -> _byteMask `i -> 0 `i 20  ]
+[e =| _CRCbyte -> -> 1 `i `uc ]
+[e :U 20 ]
+[; ;CRC Check.c: 172: if (byteMask < 0x80) byteMask = byteMask << 1;
+"172
+[e $ ! < -> _byteMask `i -> 128 `i 21  ]
+[e = _byteMask -> << -> _byteMask `i -> 1 `i `uc ]
+[e $U 22  ]
+"175
+[e :U 21 ]
+[; ;CRC Check.c: 175: else {
+{
+[; ;CRC Check.c: 176: if (i < numBytes - 2) nextByte = ptrMessage[i + 2];
+"176
+[e $ ! < -> _i `i - -> _numBytes `i -> 2 `i 23  ]
+[e = _nextByte *U + _ptrMessage * -> + -> _i `i -> 2 `i `x -> -> # *U _ptrMessage `i `x ]
+[e $U 24  ]
+"177
+[e :U 23 ]
+[; ;CRC Check.c: 177: else nextByte = 0x00;
+[e = _nextByte -> -> 0 `i `uc ]
+[e :U 24 ]
+[; ;CRC Check.c: 178: i++;
+"178
+[e ++ _i -> -> 1 `i `s ]
+[; ;CRC Check.c: 179: byteMask = 0x01;
+"179
+[e = _byteMask -> -> 1 `i `uc ]
+"180
+}
+[e :U 22 ]
+"181
+}
+[e :U 16 ]
+"164
+[e $ < -> _i `i -> _numBytes `i 17  ]
+[e :U 18 ]
+[; ;CRC Check.c: 180: }
+[; ;CRC Check.c: 181: }
+[; ;CRC Check.c: 183: CRCresult = reverseByte(CRCbyte);
+"183
+[e = _CRCresult ( _reverseByte (1 _CRCbyte ]
+[; ;CRC Check.c: 184: return (CRCresult);
+"184
+[e ) _CRCresult ]
+[e $UE 12  ]
+[; ;CRC Check.c: 185: }
+"185
+[e :UE 12 ]
+}
+"191
+[v _getCRC8 `(uc ~T0 @X0 1 ef2`*uc`s ]
+{
+[; ;CRC Check.c: 191: unsigned char getCRC8(unsigned char *ptrMessage, short numBytes){
+[e :U _getCRC8 ]
+[v _ptrMessage `*uc ~T0 @X0 1 r1 ]
+[v _numBytes `s ~T0 @X0 1 r2 ]
+[f ]
+"192
+[v _CRCresult `uc ~T0 @X0 1 a ]
+[v _CRCbyte `uc ~T0 @X0 1 a ]
+[v _byteMask `uc ~T0 @X0 1 a ]
+[v _nextByte `uc ~T0 @X0 1 a ]
+[v _parity `uc ~T0 @X0 1 a ]
+"193
+[v _i `s ~T0 @X0 1 a ]
+[; ;CRC Check.c: 192: unsigned char CRCresult, CRCbyte, byteMask, nextByte, parity;
+[; ;CRC Check.c: 193: short i;
+[; ;CRC Check.c: 195: if (ptrMessage == 0 || numBytes == 0) return(0);
+"195
+[e $ ! || == _ptrMessage -> -> 0 `i `*uc == -> _numBytes `i -> 0 `i 26  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 25  ]
+[e :U 26 ]
+[; ;CRC Check.c: 198: CRCbyte = reverseByte(ptrMessage[0]);
+"198
+[e = _CRCbyte ( _reverseByte (1 *U + _ptrMessage * -> -> 0 `i `x -> -> # *U _ptrMessage `i `x ]
+[; ;CRC Check.c: 201: if (numBytes > 1) nextByte = ptrMessage[1];
+"201
+[e $ ! > -> _numBytes `i -> 1 `i 27  ]
+[e = _nextByte *U + _ptrMessage * -> -> 1 `i `x -> -> # *U _ptrMessage `i `x ]
+[e $U 28  ]
+"202
+[e :U 27 ]
+[; ;CRC Check.c: 202: else nextByte = 0x00;
+[e = _nextByte -> -> 0 `i `uc ]
+[e :U 28 ]
+[; ;CRC Check.c: 204: byteMask = 0x01;
+"204
+[e = _byteMask -> -> 1 `i `uc ]
+[; ;CRC Check.c: 205: i = 0;
+"205
+[e = _i -> -> 0 `i `s ]
+[; ;CRC Check.c: 206: while (i < numBytes){
+"206
+[e $U 29  ]
+[e :U 30 ]
+{
+[; ;CRC Check.c: 208: if (CRCbyte & 0x80) CRCbyte = CRCbyte ^ 0b10001001;
+"208
+[e $ ! != & -> _CRCbyte `i -> 128 `i -> 0 `i 32  ]
+[e = _CRCbyte -> ^ -> _CRCbyte `i -> 137 `i `uc ]
+[e :U 32 ]
+[; ;CRC Check.c: 210: CRCbyte = (CRCbyte << 1) & 0xFE;
+"210
+[e = _CRCbyte -> & << -> _CRCbyte `i -> 1 `i -> 254 `i `uc ]
+[; ;CRC Check.c: 212: if (nextByte & byteMask) CRCbyte |= 0x01;
+"212
+[e $ ! != & -> _nextByte `i -> _byteMask `i -> 0 `i 33  ]
+[e =| _CRCbyte -> -> 1 `i `uc ]
+[e :U 33 ]
+[; ;CRC Check.c: 214: if (byteMask < 0x80) byteMask = byteMask << 1;
+"214
+[e $ ! < -> _byteMask `i -> 128 `i 34  ]
+[e = _byteMask -> << -> _byteMask `i -> 1 `i `uc ]
+[e $U 35  ]
+"217
+[e :U 34 ]
+[; ;CRC Check.c: 217: else {
+{
+[; ;CRC Check.c: 218: if (i < numBytes - 2) nextByte = ptrMessage[i + 2];
+"218
+[e $ ! < -> _i `i - -> _numBytes `i -> 2 `i 36  ]
+[e = _nextByte *U + _ptrMessage * -> + -> _i `i -> 2 `i `x -> -> # *U _ptrMessage `i `x ]
+[e $U 37  ]
+"219
+[e :U 36 ]
+[; ;CRC Check.c: 219: else nextByte = 0x00;
+[e = _nextByte -> -> 0 `i `uc ]
+[e :U 37 ]
+[; ;CRC Check.c: 220: i++;
+"220
+[e ++ _i -> -> 1 `i `s ]
+[; ;CRC Check.c: 221: byteMask = 0x01;
+"221
+[e = _byteMask -> -> 1 `i `uc ]
+"222
+}
+[e :U 35 ]
+"223
+}
+[e :U 29 ]
+"206
+[e $ < -> _i `i -> _numBytes `i 30  ]
+[e :U 31 ]
+[; ;CRC Check.c: 222: }
+[; ;CRC Check.c: 223: }
+[; ;CRC Check.c: 225: CRCresult = reverseByte(CRCbyte);
+"225
+[e = _CRCresult ( _reverseByte (1 _CRCbyte ]
+[; ;CRC Check.c: 227: parity = 0x00;
+"227
+[e = _parity -> -> 0 `i `uc ]
+[; ;CRC Check.c: 228: for (i = 0; i < 4; i++) parity = parity + ptrMessage[i];
+"228
+{
+[e = _i -> -> 0 `i `s ]
+[e $ < -> _i `i -> 4 `i 38  ]
+[e $U 39  ]
+[e :U 38 ]
+[e = _parity -> + -> _parity `i -> *U + _ptrMessage * -> _i `x -> -> # *U _ptrMessage `i `x `i `uc ]
+[e ++ _i -> -> 1 `i `s ]
+[e $ < -> _i `i -> 4 `i 38  ]
+[e :U 39 ]
+}
+[; ;CRC Check.c: 229: if (parity & 0x01) CRCresult |= 0x80;
+"229
+[e $ ! != & -> _parity `i -> 1 `i -> 0 `i 41  ]
+[e =| _CRCresult -> -> 128 `i `uc ]
+[e :U 41 ]
+[; ;CRC Check.c: 231: return (CRCresult);
+"231
+[e ) _CRCresult ]
+[e $UE 25  ]
+[; ;CRC Check.c: 232: }
+"232
+[e :UE 25 ]
+}

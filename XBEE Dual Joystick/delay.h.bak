@@ -1,0 +1,13 @@
+/* delay.H
+ *
+ * Updated 12-6-2016 to allow delays > 255 milliseconds
+ * For PIC18F2520 running at 16 Mhz
+ * Compiled with XC8 V1.37
+ * 
+ */
+
+#define	DelayUs(x)	{ unsigned char downCount; downCount = x; while(downCount--) {asm("nop");asm("nop");}	} 
+
+extern void DelayMs(unsigned short);
+
+

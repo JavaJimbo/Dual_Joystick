@@ -1,0 +1,54 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"13 ../delay.c
+[v _DelayMs `(v ~T0 @X0 1 ef1`us ]
+{
+[; ;delay.c: 12: void
+[; ;delay.c: 13: DelayMs(unsigned short count){
+[e :U _DelayMs ]
+[v _count `us ~T0 @X0 1 r1 ]
+[f ]
+"14
+[v _i `uc ~T0 @X0 1 a ]
+[; ;delay.c: 14: unsigned char i;
+[; ;delay.c: 15: while (count--) {
+"15
+[e $U 2  ]
+[e :U 3 ]
+{
+[; ;delay.c: 16: i=100;
+"16
+[e = _i -> -> 100 `i `uc ]
+[; ;delay.c: 17: while(i--) {
+"17
+[e $U 5  ]
+[e :U 6 ]
+{
+[; ;delay.c: 18: { unsigned char downCount; downCount = 4; while(downCount--);};
+"18
+{
+[v _downCount `uc ~T0 @X0 1 a ]
+[e = _downCount -> -> 4 `i `uc ]
+[e $U 8  ]
+[e :U 9 ]
+[e :U 8 ]
+[e $ != -> -- _downCount -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 9  ]
+[e :U 10 ]
+}
+"19
+}
+[e :U 5 ]
+"17
+[e $ != -> -- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 6  ]
+[e :U 7 ]
+"20
+}
+[e :U 2 ]
+"15
+[e $ != -> -- _count -> -> 1 `i `us `ui -> -> -> 0 `i `us `ui 3  ]
+[e :U 4 ]
+[; ;delay.c: 19: }
+[; ;delay.c: 20: }
+[; ;delay.c: 21: }
+"21
+[e :UE 1 ]
+}
