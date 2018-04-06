@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"45 ../main.c
+"46 ../main.c
 [v _init `(v ~T0 @X0 0 ef ]
 "16 ../delay.h
 [v _DelayMs `(v ~T0 @X0 0 ef1`us ]
@@ -24,9 +24,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S11 . . . . . . ]
 "311
 [v _PORTBbits `VS11 ~T0 @X0 0 e@3969 ]
-"67 ../main.c
+"68 ../main.c
 [v _readJoySticks `(v ~T0 @X0 0 ef ]
-"62
+"63
 [v _BuildPacket `(uc ~T0 @X0 0 ef5`uc`uc`uc`*uc`*uc ]
 "16 C:\Program Files (x86)\Microchip\xc8\v1.41\include\conio.h
 [v _putch `(v ~T0 @X0 0 ef1`uc ]
@@ -2842,7 +2842,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ctype.h: 17: extern char toupper(char);
 [; ;ctype.h: 18: extern char tolower(char);
 [; ;delay.h: 16: extern void DelayMs(unsigned short);
-"16 ../main.c
+"17 ../main.c
 [p x IESO=OFF ]
 [p x OSC=HS ]
 [p x FCMEN=OFF ]
@@ -2861,7 +2861,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x CP1=OFF ]
 [p x CP2=OFF ]
 [p x CP3=OFF ]
-"43
+"44
 [v _ADresult `us ~T0 @X0 -> 4 `i e ]
 [i _ADresult
 :U ..
@@ -2871,622 +2871,586 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `us
 ..
 ]
-[; ;main.c: 43: unsigned short ADresult[4] = {0, 0, 0, 0};
-[; ;main.c: 45: void init(void);
-[; ;main.c: 47: extern unsigned char getCRC8(unsigned char *ptrMessage, short numBytes);
-"50
+[; ;main.c: 44: unsigned short ADresult[4] = {0, 0, 0, 0};
+[; ;main.c: 46: void init(void);
+[; ;main.c: 48: extern unsigned char getCRC8(unsigned char *ptrMessage, short numBytes);
+"51
 [v _packet `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 50: unsigned char packet[32];
-"53
+[; ;main.c: 51: unsigned char packet[32];
+"54
 [v _arrDataPacket `uc ~T0 @X0 -> 1024 `i e ]
-[; ;main.c: 53: unsigned char arrDataPacket[1024];
-"55
+[; ;main.c: 54: unsigned char arrDataPacket[1024];
+"56
 [v _commandBuffer `uc ~T0 @X0 -> 64 `i e ]
-[; ;main.c: 55: unsigned char commandBuffer[64];
-[; ;main.c: 56: unsigned short createDataPacket(unsigned char *ptrData, unsigned short numDataBytes, unsigned char *ptrPacket);
-[; ;main.c: 61: unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index);
-[; ;main.c: 62: unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
-[; ;main.c: 63: extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
-[; ;main.c: 64: void ADsetChannel(unsigned char channel);
-[; ;main.c: 65: short ADreadResult(void);
-[; ;main.c: 66: void putch(unsigned char TxByte);
-[; ;main.c: 67: void readJoySticks(void);
-"69
-[v _PORTBreg `uc ~T0 @X0 1 e ]
-[; ;main.c: 69: unsigned char PORTBreg;
+[; ;main.c: 56: unsigned char commandBuffer[64];
+[; ;main.c: 57: unsigned short createDataPacket(unsigned char *ptrData, unsigned short numDataBytes, unsigned char *ptrPacket);
+[; ;main.c: 62: unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index);
+[; ;main.c: 63: unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
+[; ;main.c: 64: extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
+[; ;main.c: 65: void ADsetChannel(unsigned char channel);
+[; ;main.c: 66: short ADreadResult(void);
+[; ;main.c: 67: void putch(unsigned char TxByte);
+[; ;main.c: 68: void readJoySticks(void);
 "70
+[v _PORTBreg `uc ~T0 @X0 1 e ]
+[; ;main.c: 70: unsigned char PORTBreg;
+"71
 [v _pushFlag `uc ~T0 @X0 1 e ]
 [i _pushFlag
 -> -> 0 `i `uc
 ]
-[; ;main.c: 70: unsigned char pushFlag = 0;
-"71
+[; ;main.c: 71: unsigned char pushFlag = 0;
+"72
 [v _Timer2flag `uc ~T0 @X0 1 e ]
 [i _Timer2flag
 -> -> 0 `i `uc
 ]
-[; ;main.c: 71: unsigned char Timer2flag = 0;
-"74
+[; ;main.c: 72: unsigned char Timer2flag = 0;
+"77
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 74: void main() {
+[; ;main.c: 77: void main() {
 [e :U _main ]
 [f ]
-"75
+"78
 [v _intLeftJoystickY `s ~T0 @X0 1 a ]
 [v _intLeftJoystickX `s ~T0 @X0 1 a ]
 [v _intRightJoystickY `s ~T0 @X0 1 a ]
 [v _intRightJoystickX `s ~T0 @X0 1 a ]
-"76
-[v _rightMotor `s ~T0 @X0 1 a ]
-[v _leftMotor `s ~T0 @X0 1 a ]
-"77
-[v _rightMotorLSB `uc ~T0 @X0 1 a ]
-[v _rightMotorMSB `uc ~T0 @X0 1 a ]
-[v _leftMotorMSB `uc ~T0 @X0 1 a ]
-[v _leftMotorLSB `uc ~T0 @X0 1 a ]
-"78
-[v _motorData `uc ~T0 @X0 -> 5 `i a ]
-"79
+"81
+[v _arrJoystickData `uc ~T0 @X0 -> 8 `i a ]
+"96
 [v _packetLength `uc ~T0 @X0 1 a ]
 [v _i `uc ~T0 @X0 1 a ]
-"80
+"97
 [v _LEDcounter `uc ~T0 @X0 1 a ]
-[; ;main.c: 75: short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
-[; ;main.c: 76: short rightMotor, leftMotor;
-[; ;main.c: 77: unsigned char rightMotorLSB, rightMotorMSB, leftMotorMSB, leftMotorLSB;
-[; ;main.c: 78: unsigned char motorData[5];
-[; ;main.c: 79: unsigned char packetLength, i;
-[; ;main.c: 80: unsigned char LEDcounter = 0;
+[; ;main.c: 78: short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
+[; ;main.c: 81: unsigned char arrJoystickData[8];
+[; ;main.c: 96: unsigned char packetLength, i;
+[; ;main.c: 97: unsigned char LEDcounter = 0;
 [e = _LEDcounter -> -> 0 `i `uc ]
-"81
+"98
 [u S253 `uc -> 2 `i `i 1 ]
 [n S253 convertType byte integer ]
-"84
-[v _convert `S253 ~T0 @X0 1 a ]
-[; ;main.c: 81: union convertType {
-[; ;main.c: 82: unsigned char byte[2];
-[; ;main.c: 83: int integer;
-[; ;main.c: 84: } convert;
-[; ;main.c: 86: init();
-"86
-[e ( _init ..  ]
-[; ;main.c: 87: DelayMs(200);
-"87
-[e ( _DelayMs (1 -> -> 200 `i `us ]
-[; ;main.c: 88: PORTBbits.RB0 = PORTBbits.RB1 = PORTBbits.RB2 = 1;
-"88
-[e = . . _PORTBbits 0 0 = . . _PORTBbits 0 1 = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 89: while(1)
-"89
-[e :U 256 ]
-[; ;main.c: 90: {
-"90
-{
-[; ;main.c: 91: if (Timer2flag)
-"91
-[e $ ! != -> _Timer2flag `i -> -> -> 0 `i `uc `i 258  ]
-[; ;main.c: 92: {
-"92
-{
-[; ;main.c: 93: Timer2flag = 0;
-"93
-[e = _Timer2flag -> -> 0 `i `uc ]
-[; ;main.c: 94: LEDcounter++;
-"94
-[e ++ _LEDcounter -> -> 1 `i `uc ]
-[; ;main.c: 95: if (LEDcounter == 4)
-"95
-[e $ ! == -> _LEDcounter `i -> 4 `i 259  ]
-[; ;main.c: 96: {
-"96
-{
-[; ;main.c: 97: PORTBbits.RB0 = 1;
-"97
-[e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 98: PORTBbits.RB1 = 0;
-"98
-[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 99: PORTBbits.RB2 = 0;
-"99
-[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
-"100
-}
-[; ;main.c: 100: }
-[e $U 260  ]
 "101
-[e :U 259 ]
-[; ;main.c: 101: else if (LEDcounter == 8)
-[e $ ! == -> _LEDcounter `i -> 8 `i 261  ]
-[; ;main.c: 102: {
-"102
-{
-[; ;main.c: 103: PORTBbits.RB0 = 0;
+[v _convert `S253 ~T0 @X0 1 a ]
+[; ;main.c: 98: union convertType {
+[; ;main.c: 99: unsigned char byte[2];
+[; ;main.c: 100: int integer;
+[; ;main.c: 101: } convert;
+[; ;main.c: 103: init();
 "103
-[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 104: PORTBbits.RB1 = 1;
+[e ( _init ..  ]
+[; ;main.c: 104: DelayMs(200);
 "104
-[e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 105: PORTBbits.RB2 = 0;
+[e ( _DelayMs (1 -> -> 200 `i `us ]
+[; ;main.c: 105: PORTBbits.RB0 = PORTBbits.RB1 = PORTBbits.RB2 = 1;
 "105
-[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+[e = . . _PORTBbits 0 0 = . . _PORTBbits 0 1 = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 106: while(1)
 "106
-}
-[; ;main.c: 106: }
-[e $U 262  ]
+[e :U 256 ]
+[; ;main.c: 107: {
 "107
-[e :U 261 ]
-[; ;main.c: 107: else if (LEDcounter >= 12)
-[e $ ! >= -> _LEDcounter `i -> 12 `i 263  ]
-[; ;main.c: 108: {
-"108
 {
-[; ;main.c: 109: PORTBbits.RB0 = 0;
+[; ;main.c: 108: if (Timer2flag)
+"108
+[e $ ! != -> _Timer2flag `i -> -> -> 0 `i `uc `i 258  ]
+[; ;main.c: 109: {
 "109
-[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 110: PORTBbits.RB1 = 0;
+{
+[; ;main.c: 110: Timer2flag = 0;
 "110
-[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 111: PORTBbits.RB2 = 1;
+[e = _Timer2flag -> -> 0 `i `uc ]
+[; ;main.c: 111: LEDcounter++;
 "111
-[e = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 112: LEDcounter = 0;
+[e ++ _LEDcounter -> -> 1 `i `uc ]
+[; ;main.c: 112: if (LEDcounter == 4)
 "112
-[e = _LEDcounter -> -> 0 `i `uc ]
+[e $ ! == -> _LEDcounter `i -> 4 `i 259  ]
+[; ;main.c: 113: {
 "113
+{
+[; ;main.c: 114: PORTBbits.RB0 = 1;
+"114
+[e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 115: PORTBbits.RB1 = 0;
+"115
+[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 116: PORTBbits.RB2 = 0;
+"116
+[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+"117
+}
+[; ;main.c: 117: }
+[e $U 260  ]
+"118
+[e :U 259 ]
+[; ;main.c: 118: else if (LEDcounter == 8)
+[e $ ! == -> _LEDcounter `i -> 8 `i 261  ]
+[; ;main.c: 119: {
+"119
+{
+[; ;main.c: 120: PORTBbits.RB0 = 0;
+"120
+[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 121: PORTBbits.RB1 = 1;
+"121
+[e = . . _PORTBbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 122: PORTBbits.RB2 = 0;
+"122
+[e = . . _PORTBbits 0 2 -> -> 0 `i `uc ]
+"123
+}
+[; ;main.c: 123: }
+[e $U 262  ]
+"124
+[e :U 261 ]
+[; ;main.c: 124: else if (LEDcounter >= 12)
+[e $ ! >= -> _LEDcounter `i -> 12 `i 263  ]
+[; ;main.c: 125: {
+"125
+{
+[; ;main.c: 126: PORTBbits.RB0 = 0;
+"126
+[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 127: PORTBbits.RB1 = 0;
+"127
+[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 128: PORTBbits.RB2 = 1;
+"128
+[e = . . _PORTBbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 129: LEDcounter = 0;
+"129
+[e = _LEDcounter -> -> 0 `i `uc ]
+"130
 }
 [e :U 263 ]
-"115
+"132
 [e :U 262 ]
 [e :U 260 ]
-[; ;main.c: 113: }
-[; ;main.c: 115: readJoySticks();
+[; ;main.c: 130: }
+[; ;main.c: 132: readJoySticks();
 [e ( _readJoySticks ..  ]
-[; ;main.c: 117: intLeftJoystickY = ((short) ADresult[0]) - 127;
-"117
-[e = _intLeftJoystickY -> - -> -> *U + &U _ADresult * -> -> -> 0 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
-[; ;main.c: 118: intLeftJoystickX = ((short) ADresult[1]) - 127;
-"118
+[; ;main.c: 135: intLeftJoystickX = ((short) ADresult[1]) - 127;
+"135
 [e = _intLeftJoystickX -> - -> -> *U + &U _ADresult * -> -> -> 1 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
-[; ;main.c: 119: intRightJoystickY = ((short) ADresult[2]) - 127;
-"119
-[e = _intRightJoystickY -> - -> -> *U + &U _ADresult * -> -> -> 2 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
-[; ;main.c: 120: intRightJoystickX = ((short) ADresult[3]) - 127;
-"120
-[e = _intRightJoystickX -> - -> -> *U + &U _ADresult * -> -> -> 3 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
-[; ;main.c: 122: rightMotor = intRightJoystickY - intRightJoystickX;
-"122
-[e = _rightMotor -> - -> _intRightJoystickY `i -> _intRightJoystickX `i `s ]
-[; ;main.c: 123: rightMotor = rightMotor * 8;
-"123
-[e = _rightMotor -> * -> _rightMotor `i -> 8 `i `s ]
-[; ;main.c: 124: if (rightMotor > 1000) rightMotor = 1000;
-"124
-[e $ ! > -> _rightMotor `i -> 1000 `i 264  ]
-[e = _rightMotor -> -> 1000 `i `s ]
-[e :U 264 ]
-[; ;main.c: 125: if (rightMotor < -1000) rightMotor = -1000;
-"125
-[e $ ! < -> _rightMotor `i -U -> 1000 `i 265  ]
-[e = _rightMotor -> -U -> 1000 `i `s ]
-[e :U 265 ]
-[; ;main.c: 127: leftMotor = intRightJoystickY + intRightJoystickX;
-"127
-[e = _leftMotor -> + -> _intRightJoystickY `i -> _intRightJoystickX `i `s ]
-[; ;main.c: 128: leftMotor = leftMotor * 8;
-"128
-[e = _leftMotor -> * -> _leftMotor `i -> 8 `i `s ]
-[; ;main.c: 129: if (leftMotor > 1000) leftMotor = 1000;
-"129
-[e $ ! > -> _leftMotor `i -> 1000 `i 266  ]
-[e = _leftMotor -> -> 1000 `i `s ]
-[e :U 266 ]
-[; ;main.c: 130: if (leftMotor < -1000) leftMotor = -1000;
-"130
-[e $ ! < -> _leftMotor `i -U -> 1000 `i 267  ]
-[e = _leftMotor -> -U -> 1000 `i `s ]
-[e :U 267 ]
-[; ;main.c: 132: convert.integer = leftMotor;
-"132
-[e = . _convert 1 -> _leftMotor `i ]
-[; ;main.c: 133: leftMotorLSB = convert.byte[0];
-"133
-[e = _leftMotorLSB *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
-[; ;main.c: 134: leftMotorMSB = convert.byte[1];
-"134
-[e = _leftMotorMSB *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
-[; ;main.c: 136: convert.integer = rightMotor;
+[; ;main.c: 136: intLeftJoystickY = ((short) ADresult[0]) - 127;
 "136
-[e = . _convert 1 -> _rightMotor `i ]
-[; ;main.c: 137: rightMotorLSB = convert.byte[0];
+[e = _intLeftJoystickY -> - -> -> *U + &U _ADresult * -> -> -> 0 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
+[; ;main.c: 137: intRightJoystickX = ((short) ADresult[3]) - 127;
 "137
-[e = _rightMotorLSB *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
-[; ;main.c: 138: rightMotorMSB = convert.byte[1];
+[e = _intRightJoystickX -> - -> -> *U + &U _ADresult * -> -> -> 3 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
+[; ;main.c: 138: intRightJoystickY = ((short) ADresult[2]) - 127;
 "138
-[e = _rightMotorMSB *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
-[; ;main.c: 140: motorData[0] = rightMotorMSB;
+[e = _intRightJoystickY -> - -> -> *U + &U _ADresult * -> -> -> 2 `i `ui `ux -> -> # *U &U _ADresult `ui `ux `s `i -> 127 `i `s ]
+[; ;main.c: 140: convert.integer = intLeftJoystickX;
 "140
-[e = *U + &U _motorData * -> -> -> 0 `i `ui `ux -> -> # *U &U _motorData `ui `ux _rightMotorMSB ]
-[; ;main.c: 141: motorData[1] = rightMotorLSB;
+[e = . _convert 1 -> _intLeftJoystickX `i ]
+[; ;main.c: 141: arrJoystickData[0] = convert.byte[0];
 "141
-[e = *U + &U _motorData * -> -> -> 1 `i `ui `ux -> -> # *U &U _motorData `ui `ux _rightMotorLSB ]
-[; ;main.c: 142: motorData[2] = leftMotorMSB;
+[e = *U + &U _arrJoystickData * -> -> -> 0 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 142: arrJoystickData[1] = convert.byte[1];
 "142
-[e = *U + &U _motorData * -> -> -> 2 `i `ui `ux -> -> # *U &U _motorData `ui `ux _leftMotorMSB ]
-[; ;main.c: 143: motorData[3] = leftMotorLSB;
-"143
-[e = *U + &U _motorData * -> -> -> 3 `i `ui `ux -> -> # *U &U _motorData `ui `ux _leftMotorLSB ]
-[; ;main.c: 148: packetLength = BuildPacket(0, 145, 4, motorData, packet);
+[e = *U + &U _arrJoystickData * -> -> -> 1 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 144: convert.integer = intLeftJoystickY;
+"144
+[e = . _convert 1 -> _intLeftJoystickY `i ]
+[; ;main.c: 145: arrJoystickData[2] = convert.byte[0];
+"145
+[e = *U + &U _arrJoystickData * -> -> -> 2 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 146: arrJoystickData[3] = convert.byte[1];
+"146
+[e = *U + &U _arrJoystickData * -> -> -> 3 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 148: convert.integer = intRightJoystickX;
 "148
-[e = _packetLength ( _BuildPacket (4 , , , , -> -> 0 `i `uc -> -> 145 `i `uc -> -> 4 `i `uc &U _motorData &U _packet ]
-[; ;main.c: 149: if (packetLength < 32) for (i = 0; i < packetLength; i++) putch(packet[i]);
+[e = . _convert 1 -> _intRightJoystickX `i ]
+[; ;main.c: 149: arrJoystickData[4] = convert.byte[0];
 "149
-[e $ ! < -> _packetLength `i -> 32 `i 268  ]
+[e = *U + &U _arrJoystickData * -> -> -> 4 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 150: arrJoystickData[5] = convert.byte[1];
+"150
+[e = *U + &U _arrJoystickData * -> -> -> 5 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 152: convert.integer = intRightJoystickY;
+"152
+[e = . _convert 1 -> _intRightJoystickY `i ]
+[; ;main.c: 153: arrJoystickData[6] = convert.byte[0];
+"153
+[e = *U + &U _arrJoystickData * -> -> -> 6 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 154: arrJoystickData[7] = convert.byte[1];
+"154
+[e = *U + &U _arrJoystickData * -> -> -> 7 `i `ui `ux -> -> # *U &U _arrJoystickData `ui `ux *U + &U . _convert 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _convert 0 `ui `ux ]
+[; ;main.c: 182: packetLength = BuildPacket(0, 145, 8, arrJoystickData, packet);
+"182
+[e = _packetLength ( _BuildPacket (4 , , , , -> -> 0 `i `uc -> -> 145 `i `uc -> -> 8 `i `uc &U _arrJoystickData &U _packet ]
+[; ;main.c: 183: if (packetLength < 32) for (i = 0; i < packetLength; i++) putch(packet[i]);
+"183
+[e $ ! < -> _packetLength `i -> 32 `i 264  ]
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 272  ]
-[e :U 269 ]
+[e $U 268  ]
+[e :U 265 ]
 [e ( _putch (1 *U + &U _packet * -> _i `ux -> -> # *U &U _packet `ui `ux ]
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 272 ]
-[e $ < -> _i `i -> _packetLength `i 269  ]
-[e :U 270 ]
-}
 [e :U 268 ]
-"150
+[e $ < -> _i `i -> _packetLength `i 265  ]
+[e :U 266 ]
+}
+[e :U 264 ]
+"184
 }
 [e :U 258 ]
-"151
+"185
 }
 [e :U 255 ]
-"89
+"106
 [e $U 256  ]
 [e :U 257 ]
-[; ;main.c: 150: }
-[; ;main.c: 151: }
-[; ;main.c: 152: }
-"152
+[; ;main.c: 184: }
+[; ;main.c: 185: }
+[; ;main.c: 186: }
+"186
 [e :UE 254 ]
 }
-"154
+"188
 [v _init `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 154: void init(void) {
+[; ;main.c: 188: void init(void) {
 [e :U _init ]
 [f ]
-[; ;main.c: 155: INTCONbits.GIE = 0;
-"155
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;main.c: 158: ADCON0 = 0b00000000;
-"158
-[e = _ADCON0 -> -> 0 `i `uc ]
-[; ;main.c: 161: ADCON1bits.VCFG0 = 0;
-"161
-[e = . . _ADCON1bits 1 4 -> -> 0 `i `uc ]
-[; ;main.c: 162: ADCON1bits.VCFG1 = 0;
-"162
-[e = . . _ADCON1bits 1 5 -> -> 0 `i `uc ]
-[; ;main.c: 163: ADCON1bits.PCFG3 = 1;
-"163
-[e = . . _ADCON1bits 1 3 -> -> 1 `i `uc ]
-[; ;main.c: 164: ADCON1bits.PCFG2 = 0;
-"164
-[e = . . _ADCON1bits 1 2 -> -> 0 `i `uc ]
-[; ;main.c: 165: ADCON1bits.PCFG1 = 1;
-"165
-[e = . . _ADCON1bits 1 1 -> -> 1 `i `uc ]
-[; ;main.c: 166: ADCON1bits.PCFG0 = 1;
-"166
-[e = . . _ADCON1bits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 168: ADCON2 = 0;
-"168
-[e = _ADCON2 -> -> 0 `i `uc ]
-[; ;main.c: 169: ADCON2bits.ADFM = 1;
-"169
-[e = . . _ADCON2bits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 171: ADCON2bits.ACQT2 = 1;
-"171
-[e = . . _ADCON2bits 1 5 -> -> 1 `i `uc ]
-[; ;main.c: 172: ADCON2bits.ACQT1 = 1;
-"172
-[e = . . _ADCON2bits 1 4 -> -> 1 `i `uc ]
-[; ;main.c: 173: ADCON2bits.ACQT0 = 1;
-"173
-[e = . . _ADCON2bits 1 3 -> -> 1 `i `uc ]
-[; ;main.c: 175: ADCON2bits.ADCS2 = 1;
-"175
-[e = . . _ADCON2bits 1 2 -> -> 1 `i `uc ]
-[; ;main.c: 176: ADCON2bits.ADCS1 = 1;
-"176
-[e = . . _ADCON2bits 1 1 -> -> 1 `i `uc ]
-[; ;main.c: 177: ADCON2bits.ADCS0 = 1;
-"177
-[e = . . _ADCON2bits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 178: TRISA = 0b11011111;
-"178
-[e = _TRISA -> -> 223 `i `uc ]
-[; ;main.c: 179: PORTAbits.RA5 = 1;
-"179
-[e = . . _PORTAbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 182: TRISB = 0b11111000;
-"182
-[e = _TRISB -> -> 248 `i `uc ]
-[; ;main.c: 183: INTCON2bits.RBPU = 0;
-"183
-[e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 184: TRISC = 0b10111111;
-"184
-[e = _TRISC -> -> 191 `i `uc ]
-[; ;main.c: 187: TXSTAbits.BRGH = 1;
-"187
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 188: SPBRG = 19;
-"188
-[e = _SPBRG -> -> 19 `i `uc ]
-[; ;main.c: 189: TXSTAbits.SYNC = 0;
+[; ;main.c: 189: INTCONbits.GIE = 0;
 "189
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 190: RCSTAbits.SPEN = 1;
-"190
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 191: RCSTAbits.CREN = 1;
-"191
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 192: RCSTAbits.SREN = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;main.c: 192: ADCON0 = 0b00000000;
 "192
-[e = . . _RCSTAbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 193: PIE1bits.TXIE = 0;
-"193
-[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 194: PIE1bits.RCIE = 0;
-"194
-[e = . . _PIE1bits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 195: TXSTAbits.TX9 = 0;
+[e = _ADCON0 -> -> 0 `i `uc ]
+[; ;main.c: 195: ADCON1bits.VCFG0 = 0;
 "195
-[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 196: RCSTAbits.RX9 = 0;
+[e = . . _ADCON1bits 1 4 -> -> 0 `i `uc ]
+[; ;main.c: 196: ADCON1bits.VCFG1 = 0;
 "196
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 197: TXSTAbits.TXEN = 1;
+[e = . . _ADCON1bits 1 5 -> -> 0 `i `uc ]
+[; ;main.c: 197: ADCON1bits.PCFG3 = 1;
 "197
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 198: BAUDCONbits.TXCKP = 0;
+[e = . . _ADCON1bits 1 3 -> -> 1 `i `uc ]
+[; ;main.c: 198: ADCON1bits.PCFG2 = 0;
 "198
-[e = . . _BAUDCONbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 199: BAUDCONbits.RXDTP = 0;
+[e = . . _ADCON1bits 1 2 -> -> 0 `i `uc ]
+[; ;main.c: 199: ADCON1bits.PCFG1 = 1;
 "199
-[e = . . _BAUDCONbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 202: PR2 = 72;
+[e = . . _ADCON1bits 1 1 -> -> 1 `i `uc ]
+[; ;main.c: 200: ADCON1bits.PCFG0 = 1;
+"200
+[e = . . _ADCON1bits 1 0 -> -> 1 `i `uc ]
+[; ;main.c: 202: ADCON2 = 0;
 "202
-[e = _PR2 -> -> 72 `i `uc ]
-[; ;main.c: 203: T2CON = 0x00;
+[e = _ADCON2 -> -> 0 `i `uc ]
+[; ;main.c: 203: ADCON2bits.ADFM = 1;
 "203
-[e = _T2CON -> -> 0 `i `uc ]
-[; ;main.c: 204: T2CONbits.T2CKPS1 = 0;
-"204
-[e = . . _T2CONbits 1 1 -> -> 0 `i `uc ]
-[; ;main.c: 205: T2CONbits.T2CKPS0 = 1;
+[e = . . _ADCON2bits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 205: ADCON2bits.ACQT2 = 1;
 "205
-[e = . . _T2CONbits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 206: T2CONbits.T2OUTPS3 = 1;
+[e = . . _ADCON2bits 1 5 -> -> 1 `i `uc ]
+[; ;main.c: 206: ADCON2bits.ACQT1 = 1;
 "206
-[e = . . _T2CONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 207: T2CONbits.T2OUTPS2 = 1;
+[e = . . _ADCON2bits 1 4 -> -> 1 `i `uc ]
+[; ;main.c: 207: ADCON2bits.ACQT0 = 1;
 "207
-[e = . . _T2CONbits 1 5 -> -> 1 `i `uc ]
-[; ;main.c: 208: T2CONbits.T2OUTPS1 = 1;
-"208
-[e = . . _T2CONbits 1 4 -> -> 1 `i `uc ]
-[; ;main.c: 209: T2CONbits.T2OUTPS0 = 1;
+[e = . . _ADCON2bits 1 3 -> -> 1 `i `uc ]
+[; ;main.c: 209: ADCON2bits.ADCS2 = 1;
 "209
-[e = . . _T2CONbits 1 3 -> -> 1 `i `uc ]
-[; ;main.c: 210: T2CONbits.TMR2ON = 1;
+[e = . . _ADCON2bits 1 2 -> -> 1 `i `uc ]
+[; ;main.c: 210: ADCON2bits.ADCS1 = 1;
 "210
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 213: INTCON = 0x00;
+[e = . . _ADCON2bits 1 1 -> -> 1 `i `uc ]
+[; ;main.c: 211: ADCON2bits.ADCS0 = 1;
+"211
+[e = . . _ADCON2bits 1 0 -> -> 1 `i `uc ]
+[; ;main.c: 212: TRISA = 0b11011111;
+"212
+[e = _TRISA -> -> 223 `i `uc ]
+[; ;main.c: 213: PORTAbits.RA5 = 1;
 "213
-[e = _INTCON -> -> 0 `i `uc ]
-[; ;main.c: 214: INTCONbits.INT0IE = 0;
-"214
-[e = . . _INTCONbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 215: INTCONbits.RBIE = 0;
-"215
-[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 216: PIE1bits.TMR2IE = 1;
+[e = . . _PORTAbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 216: TRISB = 0b11111000;
 "216
-[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 217: INTCONbits.PEIE = 1;
+[e = _TRISB -> -> 248 `i `uc ]
+[; ;main.c: 217: INTCON2bits.RBPU = 0;
 "217
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 219: INTCON2 = 0x00;
-"219
-[e = _INTCON2 -> -> 0 `i `uc ]
-[; ;main.c: 220: INTCON2bits.RBPU = 0;
-"220
 [e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 221: INTCON2bits.INTEDG0 = 0;
+[; ;main.c: 218: TRISC = 0b10111111;
+"218
+[e = _TRISC -> -> 191 `i `uc ]
+[; ;main.c: 221: TXSTAbits.BRGH = 1;
 "221
-[e = . . _INTCON2bits 1 6 -> -> 0 `i `uc ]
-[; ;main.c: 222: INTCONbits.GIE = 1;
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 222: SPBRG = 19;
 "222
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 223: }
+[e = _SPBRG -> -> 19 `i `uc ]
+[; ;main.c: 223: TXSTAbits.SYNC = 0;
 "223
-[e :UE 273 ]
-}
-[v F2967 `(v ~T0 @X0 1 tf ]
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 224: RCSTAbits.SPEN = 1;
+"224
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 225: RCSTAbits.CREN = 1;
+"225
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 226: RCSTAbits.SREN = 0;
+"226
+[e = . . _RCSTAbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 227: PIE1bits.TXIE = 0;
 "227
-[v _isr `IF2967 ~T0 @X0 1 s ]
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 228: PIE1bits.RCIE = 0;
+"228
+[e = . . _PIE1bits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 229: TXSTAbits.TX9 = 0;
+"229
+[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 230: RCSTAbits.RX9 = 0;
+"230
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 231: TXSTAbits.TXEN = 1;
+"231
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 232: BAUDCONbits.TXCKP = 0;
+"232
+[e = . . _BAUDCONbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 233: BAUDCONbits.RXDTP = 0;
+"233
+[e = . . _BAUDCONbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 236: PR2 = 72;
+"236
+[e = _PR2 -> -> 72 `i `uc ]
+[; ;main.c: 237: T2CON = 0x00;
+"237
+[e = _T2CON -> -> 0 `i `uc ]
+[; ;main.c: 238: T2CONbits.T2CKPS1 = 0;
+"238
+[e = . . _T2CONbits 1 1 -> -> 0 `i `uc ]
+[; ;main.c: 239: T2CONbits.T2CKPS0 = 1;
+"239
+[e = . . _T2CONbits 1 0 -> -> 1 `i `uc ]
+[; ;main.c: 240: T2CONbits.T2OUTPS3 = 1;
+"240
+[e = . . _T2CONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 241: T2CONbits.T2OUTPS2 = 1;
+"241
+[e = . . _T2CONbits 1 5 -> -> 1 `i `uc ]
+[; ;main.c: 242: T2CONbits.T2OUTPS1 = 1;
+"242
+[e = . . _T2CONbits 1 4 -> -> 1 `i `uc ]
+[; ;main.c: 243: T2CONbits.T2OUTPS0 = 1;
+"243
+[e = . . _T2CONbits 1 3 -> -> 1 `i `uc ]
+[; ;main.c: 244: T2CONbits.TMR2ON = 1;
+"244
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 247: INTCON = 0x00;
+"247
+[e = _INTCON -> -> 0 `i `uc ]
+[; ;main.c: 248: INTCONbits.INT0IE = 0;
+"248
+[e = . . _INTCONbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 249: INTCONbits.RBIE = 0;
+"249
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 250: PIE1bits.TMR2IE = 1;
+"250
+[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 251: INTCONbits.PEIE = 1;
+"251
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 253: INTCON2 = 0x00;
+"253
+[e = _INTCON2 -> -> 0 `i `uc ]
+[; ;main.c: 254: INTCON2bits.RBPU = 0;
+"254
+[e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
+[; ;main.c: 255: INTCON2bits.INTEDG0 = 0;
+"255
+[e = . . _INTCON2bits 1 6 -> -> 0 `i `uc ]
+[; ;main.c: 256: INTCONbits.GIE = 1;
+"256
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 257: }
+"257
+[e :UE 269 ]
+}
+[v F2961 `(v ~T0 @X0 1 tf ]
+"261
+[v _isr `IF2961 ~T0 @X0 1 s ]
 {
-[; ;main.c: 227: static void interrupt isr(void) {
+[; ;main.c: 261: static void interrupt isr(void) {
 [e :U _isr ]
 [f ]
-"228
-[v F2968 `i ~T0 @X0 1 s Timer2Counter ]
-[i F2968
+"262
+[v F2962 `i ~T0 @X0 1 s Timer2Counter ]
+[i F2962
 -> 0 `i
 ]
-[; ;main.c: 228: static int Timer2Counter = 0;
-[; ;main.c: 230: if (INTCONbits.INT0IF)
-"230
-[e $ ! != -> . . _INTCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 275  ]
-[; ;main.c: 231: {
-"231
+[; ;main.c: 262: static int Timer2Counter = 0;
+[; ;main.c: 264: if (INTCONbits.INT0IF)
+"264
+[e $ ! != -> . . _INTCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 271  ]
+[; ;main.c: 265: {
+"265
 {
-[; ;main.c: 232: INTCONbits.INT0IF = 0;
-"232
+[; ;main.c: 266: INTCONbits.INT0IF = 0;
+"266
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 233: pushFlag = !0;
-"233
+[; ;main.c: 267: pushFlag = !0;
+"267
 [e = _pushFlag -> -> ! != -> 0 `i -> 0 `i `i `uc ]
-"234
+"268
 }
-[e :U 275 ]
-[; ;main.c: 234: }
-[; ;main.c: 236: if (INTCONbits.RBIF)
-"236
-[e $ ! != -> . . _INTCONbits 0 0 `i -> -> -> 0 `i `Vuc `i 276  ]
-[; ;main.c: 237: {
-"237
+[e :U 271 ]
+[; ;main.c: 268: }
+[; ;main.c: 270: if (INTCONbits.RBIF)
+"270
+[e $ ! != -> . . _INTCONbits 0 0 `i -> -> -> 0 `i `Vuc `i 272  ]
+[; ;main.c: 271: {
+"271
 {
-[; ;main.c: 238: PORTBreg = PORTB;
-"238
+[; ;main.c: 272: PORTBreg = PORTB;
+"272
 [e = _PORTBreg _PORTB ]
-[; ;main.c: 239: INTCONbits.RBIF = 0;
-"239
+[; ;main.c: 273: INTCONbits.RBIF = 0;
+"273
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"240
+"274
 }
-[e :U 276 ]
-[; ;main.c: 240: }
-[; ;main.c: 242: if (TMR2IF)
-"242
-[e $ ! _TMR2IF 277  ]
-[; ;main.c: 243: {
-"243
+[e :U 272 ]
+[; ;main.c: 274: }
+[; ;main.c: 276: if (TMR2IF)
+"276
+[e $ ! _TMR2IF 273  ]
+[; ;main.c: 277: {
+"277
 {
-[; ;main.c: 244: TMR2IF = 0;
-"244
+[; ;main.c: 278: TMR2IF = 0;
+"278
 [e = _TMR2IF -> -> 0 `i `b ]
-[; ;main.c: 245: Timer2Counter++;
-"245
-[e ++ F2968 -> 1 `i ]
-[; ;main.c: 246: if (Timer2Counter >= 100)
-"246
-[e $ ! >= F2968 -> 100 `i 278  ]
-[; ;main.c: 247: {
-"247
+[; ;main.c: 279: Timer2Counter++;
+"279
+[e ++ F2962 -> 1 `i ]
+[; ;main.c: 280: if (Timer2Counter >= 100)
+"280
+[e $ ! >= F2962 -> 100 `i 274  ]
+[; ;main.c: 281: {
+"281
 {
-[; ;main.c: 248: Timer2Counter = 0;
-"248
-[e = F2968 -> 0 `i ]
-[; ;main.c: 249: Timer2flag = !0;
-"249
+[; ;main.c: 282: Timer2Counter = 0;
+"282
+[e = F2962 -> 0 `i ]
+[; ;main.c: 283: Timer2flag = !0;
+"283
 [e = _Timer2flag -> -> ! != -> 0 `i -> 0 `i `i `uc ]
-"250
+"284
 }
-[e :U 278 ]
-"251
+[e :U 274 ]
+"285
 }
-[e :U 277 ]
-[; ;main.c: 250: }
-[; ;main.c: 251: }
-[; ;main.c: 252: }
-"252
-[e :UE 274 ]
+[e :U 273 ]
+[; ;main.c: 284: }
+[; ;main.c: 285: }
+[; ;main.c: 286: }
+"286
+[e :UE 270 ]
 }
-"254
+"288
 [v _putch `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 254: void putch(unsigned char TxByte) {
+[; ;main.c: 288: void putch(unsigned char TxByte) {
 [e :U _putch ]
 [v _TxByte `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 255: while (!PIR1bits.TXIF);
-"255
-[e $U 280  ]
-[e :U 281 ]
-[e :U 280 ]
-[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 281  ]
-[e :U 282 ]
-[; ;main.c: 256: TXREG = TxByte;
-"256
+[; ;main.c: 289: while (!PIR1bits.TXIF);
+"289
+[e $U 276  ]
+[e :U 277 ]
+[e :U 276 ]
+[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 277  ]
+[e :U 278 ]
+[; ;main.c: 290: TXREG = TxByte;
+"290
 [e = _TXREG _TxByte ]
-[; ;main.c: 257: return;
-"257
-[e $UE 279  ]
-[; ;main.c: 258: }
-"258
-[e :UE 279 ]
+[; ;main.c: 291: return;
+"291
+[e $UE 275  ]
+[; ;main.c: 292: }
+"292
+[e :UE 275 ]
 }
-"262
+"296
 [v _ADsetChannel `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 262: void ADsetChannel(unsigned char channel) {
+[; ;main.c: 296: void ADsetChannel(unsigned char channel) {
 [e :U _ADsetChannel ]
 [v _channel `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 263: ADCON0 = (channel << 2) + 0x01;
-"263
+[; ;main.c: 297: ADCON0 = (channel << 2) + 0x01;
+"297
 [e = _ADCON0 -> + << -> _channel `i -> 2 `i -> 1 `i `uc ]
-[; ;main.c: 264: }
-"264
-[e :UE 283 ]
+[; ;main.c: 298: }
+"298
+[e :UE 279 ]
 }
-"266
+"300
 [v _ADconvertAndRead `(s ~T0 @X0 1 ef ]
 {
-[; ;main.c: 266: short ADconvertAndRead(void) {
+[; ;main.c: 300: short ADconvertAndRead(void) {
 [e :U _ADconvertAndRead ]
 [f ]
-"267
+"301
 [v _highByte `us ~T0 @X0 1 a ]
-"268
+"302
 [v _ADvalue `s ~T0 @X0 1 a ]
-[; ;main.c: 267: unsigned short highByte;
-[; ;main.c: 268: short ADvalue;
-[; ;main.c: 269: ADCON0bits.GO_DONE = 1;
-"269
+[; ;main.c: 301: unsigned short highByte;
+[; ;main.c: 302: short ADvalue;
+[; ;main.c: 303: ADCON0bits.GO_DONE = 1;
+"303
 [e = . . _ADCON0bits 6 1 -> -> 1 `i `uc ]
-[; ;main.c: 270: while (ADCON0bits.GO_DONE);
-"270
-[e $U 285  ]
-[e :U 286 ]
-[e :U 285 ]
-[e $ != -> . . _ADCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 286  ]
-[e :U 287 ]
-[; ;main.c: 271: highByte = (unsigned short) ADRESH;
-"271
+[; ;main.c: 304: while (ADCON0bits.GO_DONE);
+"304
+[e $U 281  ]
+[e :U 282 ]
+[e :U 281 ]
+[e $ != -> . . _ADCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 282  ]
+[e :U 283 ]
+[; ;main.c: 305: highByte = (unsigned short) ADRESH;
+"305
 [e = _highByte -> _ADRESH `us ]
-[; ;main.c: 272: highByte = (highByte << 8) & 0b001100000000;
-"272
+[; ;main.c: 306: highByte = (highByte << 8) & 0b001100000000;
+"306
 [e = _highByte -> & << -> _highByte `ui -> 8 `i -> -> 768 `i `ui `us ]
-[; ;main.c: 273: ADvalue = (short) (highByte | ADRESL);
-"273
+[; ;main.c: 307: ADvalue = (short) (highByte | ADRESL);
+"307
 [e = _ADvalue -> | -> _highByte `ui -> _ADRESL `ui `s ]
-[; ;main.c: 274: return (ADvalue);
-"274
+[; ;main.c: 308: return (ADvalue);
+"308
 [e ) _ADvalue ]
-[e $UE 284  ]
-[; ;main.c: 275: }
-"275
-[e :UE 284 ]
+[e $UE 280  ]
+[; ;main.c: 309: }
+"309
+[e :UE 280 ]
 }
-"277
+"311
 [v _readJoySticks `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 277: void readJoySticks(void) {
+[; ;main.c: 311: void readJoySticks(void) {
 [e :U _readJoySticks ]
 [f ]
-"278
-[v F2978 `uc ~T0 @X0 1 s ADchannel ]
-[i F2978
+"312
+[v F2972 `uc ~T0 @X0 1 s ADchannel ]
+[i F2972
 -> -> 0 `i `uc
 ]
-[v F2980 `Cus ~T0 @X0 -> 0 `x s ]
-[i F2980
+[v F2974 `Cus ~T0 @X0 -> 0 `x s ]
+[i F2974
 :U ..
-"279
+"313
 -> -> 450 `i `us
 -> -> 400 `i `us
 -> -> 430 `i `us
@@ -3494,13 +3458,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ADoffset `Cus ~T0 @X0 4  a ]
-[; ;main.c: 278: static unsigned char ADchannel = 0;
-[; ;main.c: 279: const unsigned short ADoffset[] = {450, 400, 430, 400};
-[e = _ADoffset F2980 ]
-[v F2982 `Cus ~T0 @X0 -> 0 `x s ]
-[i F2982
+[; ;main.c: 312: static unsigned char ADchannel = 0;
+[; ;main.c: 313: const unsigned short ADoffset[] = {450, 400, 430, 400};
+[e = _ADoffset F2974 ]
+[v F2976 `Cus ~T0 @X0 -> 0 `x s ]
+[i F2976
 :U ..
-"280
+"314
 -> -> 150 `i `us
 -> -> 200 `i `us
 -> -> 200 `i `us
@@ -3508,210 +3472,210 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _ADspan `Cus ~T0 @X0 4  a ]
-[; ;main.c: 280: const unsigned short ADspan[] = {150, 200, 200, 200};
-[e = _ADspan F2982 ]
-"281
+[; ;main.c: 314: const unsigned short ADspan[] = {150, 200, 200, 200};
+[e = _ADspan F2976 ]
+"315
 [v _joyStickReading `us ~T0 @X0 1 a ]
 [v _offset `us ~T0 @X0 1 a ]
 [v _span `us ~T0 @X0 1 a ]
-"282
+"316
 [v _ADrawReading `s ~T0 @X0 1 a ]
-[; ;main.c: 281: unsigned short joyStickReading, offset, span;
-[; ;main.c: 282: short ADrawReading;
-[; ;main.c: 284: ADrawReading = ADconvertAndRead();
-"284
+[; ;main.c: 315: unsigned short joyStickReading, offset, span;
+[; ;main.c: 316: short ADrawReading;
+[; ;main.c: 318: ADrawReading = ADconvertAndRead();
+"318
 [e = _ADrawReading ( _ADconvertAndRead ..  ]
-[; ;main.c: 286: if (ADchannel == 0 || ADchannel == 2) joyStickReading = 1023 - ADrawReading;
-"286
-[e $ ! || == -> F2978 `i -> 0 `i == -> F2978 `i -> 2 `i 289  ]
+[; ;main.c: 320: if (ADchannel == 0 || ADchannel == 2) joyStickReading = 1023 - ADrawReading;
+"320
+[e $ ! || == -> F2972 `i -> 0 `i == -> F2972 `i -> 2 `i 285  ]
 [e = _joyStickReading -> - -> 1023 `i -> _ADrawReading `i `us ]
-[e $U 290  ]
-"287
-[e :U 289 ]
-[; ;main.c: 287: else joyStickReading = ADrawReading;
+[e $U 286  ]
+"321
+[e :U 285 ]
+[; ;main.c: 321: else joyStickReading = ADrawReading;
 [e = _joyStickReading -> _ADrawReading `us ]
-[e :U 290 ]
-[; ;main.c: 289: offset = ADoffset[ADchannel];
-"289
-[e = _offset *U + &U _ADoffset * -> F2978 `ux -> -> # *U &U _ADoffset `ui `ux ]
-[; ;main.c: 290: span = ADspan[ADchannel];
-"290
-[e = _span *U + &U _ADspan * -> F2978 `ux -> -> # *U &U _ADspan `ui `ux ]
-[; ;main.c: 291: if (joyStickReading < offset) joyStickReading = 0;
-"291
-[e $ ! < -> _joyStickReading `ui -> _offset `ui 291  ]
+[e :U 286 ]
+[; ;main.c: 323: offset = ADoffset[ADchannel];
+"323
+[e = _offset *U + &U _ADoffset * -> F2972 `ux -> -> # *U &U _ADoffset `ui `ux ]
+[; ;main.c: 324: span = ADspan[ADchannel];
+"324
+[e = _span *U + &U _ADspan * -> F2972 `ux -> -> # *U &U _ADspan `ui `ux ]
+[; ;main.c: 325: if (joyStickReading < offset) joyStickReading = 0;
+"325
+[e $ ! < -> _joyStickReading `ui -> _offset `ui 287  ]
 [e = _joyStickReading -> -> 0 `i `us ]
-[e $U 292  ]
-"292
-[e :U 291 ]
-[; ;main.c: 292: else joyStickReading = joyStickReading - offset;
+[e $U 288  ]
+"326
+[e :U 287 ]
+[; ;main.c: 326: else joyStickReading = joyStickReading - offset;
 [e = _joyStickReading -> - -> _joyStickReading `ui -> _offset `ui `us ]
-[e :U 292 ]
-[; ;main.c: 293: if (joyStickReading > span) joyStickReading = span;
-"293
-[e $ ! > -> _joyStickReading `ui -> _span `ui 293  ]
+[e :U 288 ]
+[; ;main.c: 327: if (joyStickReading > span) joyStickReading = span;
+"327
+[e $ ! > -> _joyStickReading `ui -> _span `ui 289  ]
 [e = _joyStickReading _span ]
-[e :U 293 ]
-[; ;main.c: 295: ADresult[ADchannel] = (joyStickReading * 255) / span;
-"295
-[e = *U + &U _ADresult * -> F2978 `ux -> -> # *U &U _ADresult `ui `ux -> / * -> _joyStickReading `ui -> -> 255 `i `ui -> _span `ui `us ]
-[; ;main.c: 296: if (ADresult[ADchannel] > 255) ADresult[ADchannel] = 255;
-"296
-[e $ ! > -> *U + &U _ADresult * -> F2978 `ux -> -> # *U &U _ADresult `ui `ux `ui -> -> 255 `i `ui 294  ]
-[e = *U + &U _ADresult * -> F2978 `ux -> -> # *U &U _ADresult `ui `ux -> -> 255 `i `us ]
-[e :U 294 ]
-[; ;main.c: 298: ADchannel++;
-"298
-[e ++ F2978 -> -> 1 `i `uc ]
-[; ;main.c: 299: if (ADchannel >= 4) ADchannel = 0;
-"299
-[e $ ! >= -> F2978 `i -> 4 `i 295  ]
-[e = F2978 -> -> 0 `i `uc ]
-[e :U 295 ]
-[; ;main.c: 300: ADsetChannel(ADchannel);
-"300
-[e ( _ADsetChannel (1 F2978 ]
-[; ;main.c: 301: }
-"301
-[e :UE 288 ]
+[e :U 289 ]
+[; ;main.c: 329: ADresult[ADchannel] = (joyStickReading * 255) / span;
+"329
+[e = *U + &U _ADresult * -> F2972 `ux -> -> # *U &U _ADresult `ui `ux -> / * -> _joyStickReading `ui -> -> 255 `i `ui -> _span `ui `us ]
+[; ;main.c: 330: if (ADresult[ADchannel] > 255) ADresult[ADchannel] = 255;
+"330
+[e $ ! > -> *U + &U _ADresult * -> F2972 `ux -> -> # *U &U _ADresult `ui `ux `ui -> -> 255 `i `ui 290  ]
+[e = *U + &U _ADresult * -> F2972 `ux -> -> # *U &U _ADresult `ui `ux -> -> 255 `i `us ]
+[e :U 290 ]
+[; ;main.c: 332: ADchannel++;
+"332
+[e ++ F2972 -> -> 1 `i `uc ]
+[; ;main.c: 333: if (ADchannel >= 4) ADchannel = 0;
+"333
+[e $ ! >= -> F2972 `i -> 4 `i 291  ]
+[e = F2972 -> -> 0 `i `uc ]
+[e :U 291 ]
+[; ;main.c: 334: ADsetChannel(ADchannel);
+"334
+[e ( _ADsetChannel (1 F2972 ]
+[; ;main.c: 335: }
+"335
+[e :UE 284 ]
 }
-"304
+"338
 [v _insertByte `(uc ~T0 @X0 1 ef3`uc`*uc`*uc ]
-"305
+"339
 {
-[; ;main.c: 304: unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index)
-[; ;main.c: 305: {
+[; ;main.c: 338: unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index)
+[; ;main.c: 339: {
 [e :U _insertByte ]
-"304
+"338
 [v _dataByte `uc ~T0 @X0 1 r1 ]
 [v _ptrBuffer `*uc ~T0 @X0 1 r2 ]
 [v _index `*uc ~T0 @X0 1 r3 ]
-"305
+"339
 [f ]
-[; ;main.c: 306: if (*index >= 32) return (0);
-"306
-[e $ ! >= -> *U _index `i -> 32 `i 297  ]
+[; ;main.c: 340: if (*index >= 32) return (0);
+"340
+[e $ ! >= -> *U _index `i -> 32 `i 293  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 296  ]
-[e :U 297 ]
-[; ;main.c: 307: if (dataByte == 36 || dataByte == 16 || dataByte == 13) {
-"307
-[e $ ! || || == -> _dataByte `i -> 36 `i == -> _dataByte `i -> 16 `i == -> _dataByte `i -> 13 `i 298  ]
+[e $UE 292  ]
+[e :U 293 ]
+[; ;main.c: 341: if (dataByte == 36 || dataByte == 16 || dataByte == 13) {
+"341
+[e $ ! || || == -> _dataByte `i -> 36 `i == -> _dataByte `i -> 16 `i == -> _dataByte `i -> 13 `i 294  ]
 {
-[; ;main.c: 308: ptrBuffer[*index] = 16;
-"308
+[; ;main.c: 342: ptrBuffer[*index] = 16;
+"342
 [e = *U + _ptrBuffer * -> *U _index `ux -> -> # *U _ptrBuffer `ui `ux -> -> 16 `i `uc ]
-[; ;main.c: 309: *index = *index + 1;
-"309
+[; ;main.c: 343: *index = *index + 1;
+"343
 [e = *U _index -> + -> *U _index `i -> 1 `i `uc ]
-"310
+"344
 }
-[e :U 298 ]
-[; ;main.c: 310: }
-[; ;main.c: 311: if (*index >= 32) return (0);
-"311
-[e $ ! >= -> *U _index `i -> 32 `i 299  ]
+[e :U 294 ]
+[; ;main.c: 344: }
+[; ;main.c: 345: if (*index >= 32) return (0);
+"345
+[e $ ! >= -> *U _index `i -> 32 `i 295  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 296  ]
-[e :U 299 ]
-[; ;main.c: 312: ptrBuffer[*index] = dataByte;
-"312
+[e $UE 292  ]
+[e :U 295 ]
+[; ;main.c: 346: ptrBuffer[*index] = dataByte;
+"346
 [e = *U + _ptrBuffer * -> *U _index `ux -> -> # *U _ptrBuffer `ui `ux _dataByte ]
-[; ;main.c: 313: *index = *index + 1;
-"313
+[; ;main.c: 347: *index = *index + 1;
+"347
 [e = *U _index -> + -> *U _index `i -> 1 `i `uc ]
-[; ;main.c: 314: return (!0);
-"314
+[; ;main.c: 348: return (!0);
+"348
 [e ) -> -> ! != -> 0 `i -> 0 `i `i `uc ]
-[e $UE 296  ]
-[; ;main.c: 315: }
-"315
-[e :UE 296 ]
+[e $UE 292  ]
+[; ;main.c: 349: }
+"349
+[e :UE 292 ]
 }
-"317
+"351
 [v _BuildPacket `(uc ~T0 @X0 1 ef5`uc`uc`uc`*uc`*uc ]
-"318
+"352
 {
-[; ;main.c: 317: unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket)
-[; ;main.c: 318: {
+[; ;main.c: 351: unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket)
+[; ;main.c: 352: {
 [e :U _BuildPacket ]
-"317
+"351
 [v _command `uc ~T0 @X0 1 r1 ]
 [v _subCommand `uc ~T0 @X0 1 r2 ]
 [v _dataLength `uc ~T0 @X0 1 r3 ]
 [v _ptrData `*uc ~T0 @X0 1 r4 ]
 [v _ptrPacket `*uc ~T0 @X0 1 r5 ]
-"318
+"352
 [f ]
-"319
+"353
 [v _packetIndex `uc ~T0 @X0 1 a ]
-[; ;main.c: 319: unsigned char packetIndex = 0, i;
+[; ;main.c: 353: unsigned char packetIndex = 0, i;
 [e = _packetIndex -> -> 0 `i `uc ]
 [v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 321: if (dataLength <= 32) {
-"321
-[e $ ! <= -> _dataLength `i -> 32 `i 301  ]
+[; ;main.c: 355: if (dataLength <= 32) {
+"355
+[e $ ! <= -> _dataLength `i -> 32 `i 297  ]
 {
-[; ;main.c: 322: ptrPacket[packetIndex++] = 36;
-"322
+[; ;main.c: 356: ptrPacket[packetIndex++] = 36;
+"356
 [e = *U + _ptrPacket * -> ++ _packetIndex -> -> 1 `i `uc `ux -> -> # *U _ptrPacket `ui `ux -> -> 36 `i `uc ]
-[; ;main.c: 324: if (!insertByte(command, ptrPacket, &packetIndex)) return(0);
-"324
-[e $ ! ! != -> ( _insertByte (3 , , _command _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 302  ]
+[; ;main.c: 358: if (!insertByte(command, ptrPacket, &packetIndex)) return(0);
+"358
+[e $ ! ! != -> ( _insertByte (3 , , _command _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 298  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 300  ]
-[e :U 302 ]
-[; ;main.c: 325: if (!insertByte(subCommand, ptrPacket, &packetIndex)) return(0);
-"325
-[e $ ! ! != -> ( _insertByte (3 , , _subCommand _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 303  ]
+[e $UE 296  ]
+[e :U 298 ]
+[; ;main.c: 359: if (!insertByte(subCommand, ptrPacket, &packetIndex)) return(0);
+"359
+[e $ ! ! != -> ( _insertByte (3 , , _subCommand _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 299  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 300  ]
-[e :U 303 ]
-[; ;main.c: 326: if (!insertByte(dataLength, ptrPacket, &packetIndex)) return(0);
-"326
-[e $ ! ! != -> ( _insertByte (3 , , _dataLength _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 304  ]
+[e $UE 296  ]
+[e :U 299 ]
+[; ;main.c: 360: if (!insertByte(dataLength, ptrPacket, &packetIndex)) return(0);
+"360
+[e $ ! ! != -> ( _insertByte (3 , , _dataLength _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 300  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 300  ]
-[e :U 304 ]
-[; ;main.c: 328: for (i = 0; i < dataLength; i++){
-"328
+[e $UE 296  ]
+[e :U 300 ]
+[; ;main.c: 362: for (i = 0; i < dataLength; i++){
+"362
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 308  ]
-[e :U 305 ]
-{
-[; ;main.c: 329: if (!insertByte(ptrData[i], ptrPacket, &packetIndex)) return(0);
-"329
-[e $ ! ! != -> ( _insertByte (3 , , *U + _ptrData * -> _i `ux -> -> # *U _ptrData `ui `ux _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 309  ]
-[e ) -> -> 0 `i `uc ]
-[e $UE 300  ]
-[e :U 309 ]
-"330
-}
-"328
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 308 ]
-[e $ < -> _i `i -> _dataLength `i 305  ]
-[e :U 306 ]
-"330
-}
-[; ;main.c: 330: }
-[; ;main.c: 331: ptrPacket[packetIndex++] = 13;
-"331
-[e = *U + _ptrPacket * -> ++ _packetIndex -> -> 1 `i `uc `ux -> -> # *U _ptrPacket `ui `ux -> -> 13 `i `uc ]
-[; ;main.c: 333: return (packetIndex);
-"333
-[e ) _packetIndex ]
-[e $UE 300  ]
-"334
-}
-[; ;main.c: 334: } else return (0);
-[e $U 310  ]
+[e $U 304  ]
 [e :U 301 ]
+{
+[; ;main.c: 363: if (!insertByte(ptrData[i], ptrPacket, &packetIndex)) return(0);
+"363
+[e $ ! ! != -> ( _insertByte (3 , , *U + _ptrData * -> _i `ux -> -> # *U _ptrData `ui `ux _ptrPacket &U _packetIndex `i -> -> -> 0 `i `uc `i 305  ]
 [e ) -> -> 0 `i `uc ]
-[e $UE 300  ]
-[e :U 310 ]
-[; ;main.c: 335: }
-"335
-[e :UE 300 ]
+[e $UE 296  ]
+[e :U 305 ]
+"364
+}
+"362
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 304 ]
+[e $ < -> _i `i -> _dataLength `i 301  ]
+[e :U 302 ]
+"364
+}
+[; ;main.c: 364: }
+[; ;main.c: 365: ptrPacket[packetIndex++] = 13;
+"365
+[e = *U + _ptrPacket * -> ++ _packetIndex -> -> 1 `i `uc `ux -> -> # *U _ptrPacket `ui `ux -> -> 13 `i `uc ]
+[; ;main.c: 367: return (packetIndex);
+"367
+[e ) _packetIndex ]
+[e $UE 296  ]
+"368
+}
+[; ;main.c: 368: } else return (0);
+[e $U 306  ]
+[e :U 297 ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 296  ]
+[e :U 306 ]
+[; ;main.c: 369: }
+"369
+[e :UE 296 ]
 }

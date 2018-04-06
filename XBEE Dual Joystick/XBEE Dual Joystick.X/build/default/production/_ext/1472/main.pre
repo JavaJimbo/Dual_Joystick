@@ -3483,10 +3483,10 @@ extern char tolower(char);
 extern void DelayMs(unsigned short);
 
 
-# 16 "../main.c"
+# 17 "../main.c"
 #pragma config IESO = OFF, OSC = HS, FCMEN = OFF, BOREN = OFF, PWRT = ON, WDT = OFF, CCP2MX = PORTC, PBADEN = OFF, LPT1OSC = OFF, MCLRE = ON, DEBUG = OFF, STVREN = OFF, XINST = OFF, LVP = OFF, CP0 = OFF, CP1 = OFF, CP2 = OFF, CP3 = OFF
 
-# 43
+# 44
 unsigned short ADresult[4] = {0, 0, 0, 0};
 
 void init(void);
@@ -3518,11 +3518,15 @@ unsigned char pushFlag = 0;
 unsigned char Timer2flag = 0;
 
 
+
+
 void main() {
 short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
-short rightMotor, leftMotor;
-unsigned char rightMotorLSB, rightMotorMSB, leftMotorMSB, leftMotorLSB;
-unsigned char motorData[5];
+
+
+unsigned char arrJoystickData[8];
+
+# 96
 unsigned char packetLength, i;
 unsigned char LEDcounter = 0;
 union convertType {
@@ -3561,38 +3565,30 @@ LEDcounter = 0;
 
 readJoySticks();
 
-intLeftJoystickY = ((short) ADresult[0]) - 127;
+
 intLeftJoystickX = ((short) ADresult[1]) - 127;
-intRightJoystickY = ((short) ADresult[2]) - 127;
+intLeftJoystickY = ((short) ADresult[0]) - 127;
 intRightJoystickX = ((short) ADresult[3]) - 127;
+intRightJoystickY = ((short) ADresult[2]) - 127;
 
-rightMotor = intRightJoystickY - intRightJoystickX;
-rightMotor = rightMotor * 8;
-if (rightMotor > 1000) rightMotor = 1000;
-if (rightMotor < -1000) rightMotor = -1000;
+convert.integer = intLeftJoystickX;
+arrJoystickData[0] = convert.byte[0];
+arrJoystickData[1] = convert.byte[1];
 
-leftMotor = intRightJoystickY + intRightJoystickX;
-leftMotor = leftMotor * 8;
-if (leftMotor > 1000) leftMotor = 1000;
-if (leftMotor < -1000) leftMotor = -1000;
+convert.integer = intLeftJoystickY;
+arrJoystickData[2] = convert.byte[0];
+arrJoystickData[3] = convert.byte[1];
 
-convert.integer = leftMotor;
-leftMotorLSB = convert.byte[0];
-leftMotorMSB = convert.byte[1];
+convert.integer = intRightJoystickX;
+arrJoystickData[4] = convert.byte[0];
+arrJoystickData[5] = convert.byte[1];
 
-convert.integer = rightMotor;
-rightMotorLSB = convert.byte[0];
-rightMotorMSB = convert.byte[1];
+convert.integer = intRightJoystickY;
+arrJoystickData[6] = convert.byte[0];
+arrJoystickData[7] = convert.byte[1];
 
-motorData[0] = rightMotorMSB;
-motorData[1] = rightMotorLSB;
-motorData[2] = leftMotorMSB;
-motorData[3] = leftMotorLSB;
-
-
-
-
-packetLength = BuildPacket(0, 145, 4, motorData, packet);
+# 182
+packetLength = BuildPacket(0, 145, 8, arrJoystickData, packet);
 if (packetLength < 32) for (i = 0; i < packetLength; i++) putch(packet[i]);
 }
 }

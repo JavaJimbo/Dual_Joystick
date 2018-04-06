@@ -4,6 +4,7 @@
  *  Reads four pots on two joysticks, transmits data via XBEE
  * 
  *  04-05-18:   Adapted from USB project, runs 4 Wheeler
+ *  04-06-18:   Moved motor math from joystick to Quad board, so joystick data is transmitted
  */
 
 #include <xc.h>
@@ -70,12 +71,28 @@ unsigned char PORTBreg;
 unsigned char pushFlag = FALSE;
 unsigned char Timer2flag = FALSE;
 
+#define ROOMBA 0
+#define DRIVEDIRECT 145
 
 void main() {        
 short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
-short rightMotor, leftMotor;
-unsigned char rightMotorLSB, rightMotorMSB, leftMotorMSB, leftMotorLSB;
-unsigned char motorData[5];
+//unsigned char MSBLeftJoystickY, MSBLeftJoystickX, MSBRightJoystickY, MSBRightJoystickX;
+//unsigned char LSBLeftJoystickY, LSBLeftJoystickX, LSBRightJoystickY, LSBRightJoystickX;
+unsigned char arrJoystickData[8];
+
+#define LSBLeftJoystickX arrJoystickData[0]
+#define MSBLeftJoystickX arrJoystickData[1]
+#define LSBLeftJoystickY arrJoystickData[2]
+#define MSBLeftJoystickY arrJoystickData[3]
+
+#define LSBRightJoystickX arrJoystickData[4]
+#define MSBRightJoystickX arrJoystickData[5]
+#define LSBRightJoystickY arrJoystickData[6]
+#define MSBRightJoystickY arrJoystickData[7]
+
+// short rightMotor, leftMotor;
+// unsigned char rightMotorLSB, rightMotorMSB, leftMotorMSB, leftMotorLSB;
+// unsigned char motorData[5];
 unsigned char packetLength, i;
 unsigned char LEDcounter = 0;
 union convertType {
@@ -114,11 +131,29 @@ union convertType {
             
             readJoySticks();
             
-            intLeftJoystickY = ((short) leftJoystickY) - 127;                
-            intLeftJoystickX = ((short) leftJoystickX) - 127;        
+                            
+            intLeftJoystickX = ((short) leftJoystickX) - 127;    
+            intLeftJoystickY = ((short) leftJoystickY) - 127;
+            intRightJoystickX = ((short) rightJoystickX) - 127; 
             intRightJoystickY = ((short) rightJoystickY) - 127;        
-            intRightJoystickX = ((short) rightJoystickX) - 127;                      
 
+            convert.integer = intLeftJoystickX;
+            LSBLeftJoystickX = convert.byte[0];
+            MSBLeftJoystickX = convert.byte[1];
+
+            convert.integer = intLeftJoystickY;
+            LSBLeftJoystickY = convert.byte[0];
+            MSBLeftJoystickY = convert.byte[1];
+            
+            convert.integer = intRightJoystickX;
+            LSBRightJoystickX = convert.byte[0];
+            MSBRightJoystickX = convert.byte[1];
+            
+            convert.integer = intRightJoystickY;
+            LSBRightJoystickY = convert.byte[0];
+            MSBRightJoystickY = convert.byte[1];           
+            
+            /*
             rightMotor = intRightJoystickY - intRightJoystickX;
             rightMotor = rightMotor * 8;
             if (rightMotor > 1000) rightMotor = 1000;  // Was 500 for Roomba
@@ -140,13 +175,12 @@ union convertType {
             motorData[0] = rightMotorMSB;
             motorData[1] = rightMotorLSB;
             motorData[2] = leftMotorMSB;
-            motorData[3] = leftMotorLSB;            
-            
-            #define ROOMBA 0
-            #define DRIVEDIRECT 145
+            motorData[3] = leftMotorLSB;                       
             
             packetLength = BuildPacket(ROOMBA, DRIVEDIRECT, 4, motorData, packet);
-            if (packetLength < MAXPACKET) for (i = 0; i < packetLength; i++) putch(packet[i]);            
+             */
+            packetLength = BuildPacket(ROOMBA, DRIVEDIRECT, 8, arrJoystickData, packet);        // Construct packet
+            if (packetLength < MAXPACKET) for (i = 0; i < packetLength; i++) putch(packet[i]);  // Transmit packet
         }
     }
 }

@@ -9,23 +9,23 @@
 [v _reverseByte reverseByte `(uc  1 e 1 0 ]
 "13 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/delay.c
 [v _DelayMs DelayMs `(v  1 e 1 0 ]
-"74 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
+"77 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
 [v _main main `(v  1 e 1 0 ]
-"154
+"188
 [v _init init `(v  1 e 1 0 ]
-"227
+"261
 [v _isr isr `II(v  1 s 1 isr ]
-"254
+"288
 [v _putch putch `(v  1 e 1 0 ]
-"262
+"296
 [v _ADsetChannel ADsetChannel `(v  1 e 1 0 ]
-"266
+"300
 [v _ADconvertAndRead ADconvertAndRead `(s  1 e 2 0 ]
-"277
+"311
 [v _readJoySticks readJoySticks `(v  1 e 1 0 ]
-"304
+"338
 [v _insertByte insertByte `(uc  1 e 1 0 ]
-"317
+"351
 [v _BuildPacket BuildPacket `(uc  1 e 1 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
@@ -53,15 +53,15 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "24 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/CRC Check.c
 [v _crc_tab16 crc_tab16 `C[256]us  1 e 512 0 ]
-"43 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
+"44 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
 [v _ADresult ADresult `[4]us  1 e 8 0 ]
-"50
+"51
 [v _packet packet `[32]uc  1 e 32 0 ]
-"69
-[v _PORTBreg PORTBreg `uc  1 e 1 0 ]
 "70
-[v _pushFlag pushFlag `uc  1 e 1 0 ]
+[v _PORTBreg PORTBreg `uc  1 e 1 0 ]
 "71
+[v _pushFlag pushFlag `uc  1 e 1 0 ]
+"72
 [v _Timer2flag Timer2flag `uc  1 e 1 0 ]
 [s S234 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
@@ -413,54 +413,46 @@
 [v _INTCONbits INTCONbits `VES141  1 e 1 @4082 ]
 "6703
 [v _TMR2IF TMR2IF `VEb  1 e 0 @31985 ]
-"74 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
+"77 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
 [v _main main `(v  1 e 1 0 ]
 {
+"81
+[v main@arrJoystickData arrJoystickData `[8]uc  1 a 8 8 ]
+[u S721 convertType 2 `[2]uc 1 byte 2 0 `i 1 integer 2 0 ]
+"101
+[v main@convert convert `S721  1 a 2 19 ]
 "78
-[v main@motorData motorData `[5]uc  1 a 5 59 ]
-[u S727 convertType 2 `[2]uc 1 byte 2 0 `i 1 integer 2 0 ]
-"84
-[v main@convert convert `S727  1 a 2 79 ]
-"76
-[v main@leftMotor leftMotor `s  1 a 2 77 ]
-[v main@rightMotor rightMotor `s  1 a 2 75 ]
-"75
-[v main@intRightJoystickX intRightJoystickX `s  1 a 2 70 ]
-[v main@intRightJoystickY intRightJoystickY `s  1 a 2 68 ]
-[v main@intLeftJoystickX intLeftJoystickX `s  1 a 2 57 ]
-[v main@intLeftJoystickY intLeftJoystickY `s  1 a 2 55 ]
-"80
-[v main@LEDcounter LEDcounter `uc  1 a 1 74 ]
-"79
-[v main@i i `uc  1 a 1 73 ]
-[v main@packetLength packetLength `uc  1 a 1 72 ]
-"77
-[v main@leftMotorLSB leftMotorLSB `uc  1 a 1 67 ]
-[v main@leftMotorMSB leftMotorMSB `uc  1 a 1 66 ]
-[v main@rightMotorMSB rightMotorMSB `uc  1 a 1 65 ]
-[v main@rightMotorLSB rightMotorLSB `uc  1 a 1 64 ]
-"152
+[v main@intRightJoystickX intRightJoystickX `s  1 a 2 6 ]
+[v main@intRightJoystickY intRightJoystickY `s  1 a 2 4 ]
+[v main@intLeftJoystickX intLeftJoystickX `s  1 a 2 2 ]
+[v main@intLeftJoystickY intLeftJoystickY `s  1 a 2 0 ]
+"97
+[v main@LEDcounter LEDcounter `uc  1 a 1 18 ]
+"96
+[v main@i i `uc  1 a 1 17 ]
+[v main@packetLength packetLength `uc  1 a 1 16 ]
+"186
 } 0
-"277
+"311
 [v _readJoySticks readJoySticks `(v  1 e 1 0 ]
 {
-"280
+"314
 [v readJoySticks@ADspan ADspan `C[4]us  1 a 8 37 ]
-"279
+"313
 [v readJoySticks@ADoffset ADoffset `C[4]us  1 a 8 29 ]
-"281
+"315
 [v readJoySticks@joyStickReading joyStickReading `us  1 a 2 51 ]
 [v readJoySticks@span span `us  1 a 2 49 ]
-"282
+"316
 [v readJoySticks@ADrawReading ADrawReading `s  1 a 2 47 ]
-"281
+"315
 [v readJoySticks@offset offset `us  1 a 2 45 ]
-"278
+"312
 [v readJoySticks@ADchannel ADchannel `uc  1 s 1 ADchannel ]
-[v readJoySticks@F2980 F2980 `C[4]us  1 s 8 F2980 ]
-"279
-[v readJoySticks@F2982 F2982 `C[4]us  1 s 8 F2982 ]
-"301
+[v readJoySticks@F2974 F2974 `C[4]us  1 s 8 F2974 ]
+"313
+[v readJoySticks@F2976 F2976 `C[4]us  1 s 8 F2976 ]
+"335
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -476,43 +468,43 @@
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwdiv@quotient quotient `ui  1 a 2 24 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 25 ]
 "12
-[v ___lwdiv@counter counter `uc  1 a 1 26 ]
+[v ___lwdiv@counter counter `uc  1 a 1 24 ]
 "8
 [v ___lwdiv@dividend dividend `ui  1 p 2 20 ]
 [v ___lwdiv@divisor divisor `ui  1 p 2 22 ]
 "31
 } 0
-"262 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
+"296 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
 [v _ADsetChannel ADsetChannel `(v  1 e 1 0 ]
 {
 [v ADsetChannel@channel channel `uc  1 a 1 wreg ]
 [v ADsetChannel@channel channel `uc  1 a 1 wreg ]
 [v ADsetChannel@channel channel `uc  1 a 1 15 ]
-"264
+"298
 } 0
-"266
+"300
 [v _ADconvertAndRead ADconvertAndRead `(s  1 e 2 0 ]
 {
-"267
+"301
 [v ADconvertAndRead@highByte highByte `us  1 a 2 20 ]
-"268
+"302
 [v ADconvertAndRead@ADvalue ADvalue `s  1 a 2 18 ]
-"275
+"309
 } 0
-"254
+"288
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@TxByte TxByte `uc  1 a 1 wreg ]
 [v putch@TxByte TxByte `uc  1 a 1 wreg ]
 [v putch@TxByte TxByte `uc  1 a 1 14 ]
-"258
+"292
 } 0
-"154
+"188
 [v _init init `(v  1 e 1 0 ]
 {
-"223
+"257
 } 0
 "13 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/delay.c
 [v _DelayMs DelayMs `(v  1 e 1 0 ]
@@ -525,38 +517,38 @@
 [v DelayMs@count count `us  1 p 2 14 ]
 "21
 } 0
-"317 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
+"351 C:\Users\JimSe\Documents\Work\XBEE Dual Joystick/main.c
 [v _BuildPacket BuildPacket `(uc  1 e 1 0 ]
 {
 [v BuildPacket@command command `uc  1 a 1 wreg ]
-"319
+"353
 [v BuildPacket@packetIndex packetIndex `uc  1 a 1 28 ]
 [v BuildPacket@i i `uc  1 a 1 27 ]
-"317
+"351
 [v BuildPacket@command command `uc  1 a 1 wreg ]
 [v BuildPacket@subCommand subCommand `uc  1 p 1 20 ]
 [v BuildPacket@dataLength dataLength `uc  1 p 1 21 ]
 [v BuildPacket@ptrData ptrData `*.39uc  1 p 2 22 ]
 [v BuildPacket@ptrPacket ptrPacket `*.39uc  1 p 2 24 ]
-"319
+"353
 [v BuildPacket@command command `uc  1 a 1 26 ]
-"335
+"369
 } 0
-"304
+"338
 [v _insertByte insertByte `(uc  1 e 1 0 ]
 {
 [v insertByte@dataByte dataByte `uc  1 a 1 wreg ]
 [v insertByte@dataByte dataByte `uc  1 a 1 wreg ]
 [v insertByte@ptrBuffer ptrBuffer `*.39uc  1 p 2 14 ]
 [v insertByte@index index `*.39uc  1 p 2 16 ]
-"306
+"340
 [v insertByte@dataByte dataByte `uc  1 a 1 19 ]
-"315
+"349
 } 0
-"227
+"261
 [v _isr isr `II(v  1 s 1 isr ]
 {
-"228
+"262
 [v isr@Timer2Counter Timer2Counter `i  1 s 2 Timer2Counter ]
-"252
+"286
 } 0
