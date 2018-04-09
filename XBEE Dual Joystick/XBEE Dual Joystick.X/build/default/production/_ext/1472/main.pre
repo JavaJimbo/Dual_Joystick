@@ -3483,18 +3483,18 @@ extern char tolower(char);
 extern void DelayMs(unsigned short);
 
 
-# 17 "../main.c"
+# 18 "../main.c"
 #pragma config IESO = OFF, OSC = HS, FCMEN = OFF, BOREN = OFF, PWRT = ON, WDT = OFF, CCP2MX = PORTC, PBADEN = OFF, LPT1OSC = OFF, MCLRE = ON, DEBUG = OFF, STVREN = OFF, XINST = OFF, LVP = OFF, CP0 = OFF, CP1 = OFF, CP2 = OFF, CP3 = OFF
 
-# 44
+# 45
 unsigned short ADresult[4] = {0, 0, 0, 0};
 
 void init(void);
 
-extern unsigned char getCRC8(unsigned char *ptrMessage, short numBytes);
+extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
 
 
-unsigned char packet[32];
+unsigned char arrPacket[32];
 
 
 unsigned char arrDataPacket[1024];
@@ -3506,8 +3506,8 @@ unsigned short createDataPacket(unsigned char *ptrData, unsigned short numDataBy
 
 
 unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index);
-unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
-extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
+
+unsigned char BuildPacket(unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
 void ADsetChannel(unsigned char channel);
 short ADreadResult(void);
 void putch(unsigned char TxByte);
@@ -3522,9 +3522,7 @@ unsigned char Timer2flag = 0;
 
 void main() {
 short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
-
-
-unsigned char arrJoystickData[8];
+unsigned char arrTransmitData[16];
 
 # 96
 unsigned char packetLength, i;
@@ -3534,9 +3532,12 @@ unsigned char byte[2];
 int integer;
 } convert;
 
+
 init();
 DelayMs(200);
 PORTBbits.RB0 = PORTBbits.RB1 = PORTBbits.RB2 = 1;
+
+
 while(1)
 {
 if (Timer2flag)
@@ -3565,31 +3566,36 @@ LEDcounter = 0;
 
 readJoySticks();
 
-
 intLeftJoystickX = ((short) ADresult[1]) - 127;
 intLeftJoystickY = ((short) ADresult[0]) - 127;
 intRightJoystickX = ((short) ADresult[3]) - 127;
 intRightJoystickY = ((short) ADresult[2]) - 127;
 
 convert.integer = intLeftJoystickX;
-arrJoystickData[0] = convert.byte[0];
-arrJoystickData[1] = convert.byte[1];
+arrTransmitData[3] = convert.byte[0];
+arrTransmitData[4] = convert.byte[1];
 
 convert.integer = intLeftJoystickY;
-arrJoystickData[2] = convert.byte[0];
-arrJoystickData[3] = convert.byte[1];
+arrTransmitData[5] = convert.byte[0];
+arrTransmitData[6] = convert.byte[1];
 
 convert.integer = intRightJoystickX;
-arrJoystickData[4] = convert.byte[0];
-arrJoystickData[5] = convert.byte[1];
+arrTransmitData[7] = convert.byte[0];
+arrTransmitData[8] = convert.byte[1];
 
 convert.integer = intRightJoystickY;
-arrJoystickData[6] = convert.byte[0];
-arrJoystickData[7] = convert.byte[1];
+arrTransmitData[9] = convert.byte[0];
+arrTransmitData[10] = convert.byte[1];
 
-# 182
-packetLength = BuildPacket(0, 145, 8, arrJoystickData, packet);
-if (packetLength < 32) for (i = 0; i < packetLength; i++) putch(packet[i]);
+arrTransmitData[0] = 0;
+arrTransmitData[1] = 145;
+arrTransmitData[2] = 13;
+
+convert.integer = CRCcalculate(arrTransmitData, arrTransmitData[2]-2);
+arrTransmitData[11] = convert.byte[0];
+arrTransmitData[12] = convert.byte[1];
+packetLength = BuildPacket(arrTransmitData[2], arrTransmitData, arrPacket);
+if (packetLength < 32) for (i = 0; i < packetLength; i++) putch(arrPacket[i]);
 }
 }
 }
@@ -3757,22 +3763,16 @@ ptrBuffer[*index] = dataByte;
 return (!0);
 }
 
-unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket)
+
+unsigned char BuildPacket(unsigned char dataLength, unsigned char *ptrCommandData, unsigned char *ptrPacket)
 {
 unsigned char packetIndex = 0, i;
 
 if (dataLength <= 32) {
 ptrPacket[packetIndex++] = 36;
-
-if (!insertByte(command, ptrPacket, &packetIndex)) return(0);
-if (!insertByte(subCommand, ptrPacket, &packetIndex)) return(0);
-if (!insertByte(dataLength, ptrPacket, &packetIndex)) return(0);
-
-for (i = 0; i < dataLength; i++){
-if (!insertByte(ptrData[i], ptrPacket, &packetIndex)) return(0);
-}
+for (i = 0; i < dataLength; i++)
+if (!insertByte(ptrCommandData[i], ptrPacket, &packetIndex)) return(0);
 ptrPacket[packetIndex++] = 13;
-
 return (packetIndex);
 } else return (0);
 }

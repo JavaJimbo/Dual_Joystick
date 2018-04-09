@@ -3,8 +3,9 @@
  *  C language written for for 18F2520 on XC8 Compiler V1.41 & MPLABX V4.01
  *  Reads four pots on two joysticks, transmits data via XBEE
  * 
- *  04-05-18:   Adapted from USB project, runs 4 Wheeler
- *  04-06-18:   Moved motor math from joystick to Quad board, so joystick data is transmitted
+ *  4-5-18: Adapted from USB project, runs 4 Wheeler
+ *  4-6-18: Moved motor math from joystick to Quad board, so joystick data is transmitted.
+ *  4-8-18: Works with Quad Motor 220 steering forward-reverse-right-left on four wheels. 
  */
 
 #include <xc.h>
@@ -45,10 +46,10 @@ unsigned short ADresult[NUM_AD_CHANNELS] = {0, 0, 0, 0};
 
 void init(void);
 
-extern unsigned char getCRC8(unsigned char *ptrMessage, short numBytes);
+extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
 
 #define MAXPACKET 32
-unsigned char packet[MAXPACKET];
+unsigned char arrPacket[MAXPACKET];
 
 #define MAXPACKETBYTES 1024
 unsigned char arrDataPacket[MAXPACKETBYTES];
@@ -60,8 +61,8 @@ unsigned short createDataPacket(unsigned char *ptrData, unsigned short numDataBy
 #define LOW_STATE 0
 
 unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsigned char *index);
-unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
-extern unsigned short CRCcalculate (unsigned char *message, unsigned char nBytes);
+// unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
+unsigned char BuildPacket(unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket);
 void ADsetChannel(unsigned char channel);
 short ADreadResult(void);
 void putch(unsigned char TxByte);
@@ -76,33 +77,35 @@ unsigned char Timer2flag = FALSE;
 
 void main() {        
 short intLeftJoystickY, intLeftJoystickX, intRightJoystickY, intRightJoystickX;
-//unsigned char MSBLeftJoystickY, MSBLeftJoystickX, MSBRightJoystickY, MSBRightJoystickX;
-//unsigned char LSBLeftJoystickY, LSBLeftJoystickX, LSBRightJoystickY, LSBRightJoystickX;
-unsigned char arrJoystickData[8];
+unsigned char arrTransmitData[16];
 
-#define LSBLeftJoystickX arrJoystickData[0]
-#define MSBLeftJoystickX arrJoystickData[1]
-#define LSBLeftJoystickY arrJoystickData[2]
-#define MSBLeftJoystickY arrJoystickData[3]
+#define CommandByte      arrTransmitData[0]
+#define SubCommandByte   arrTransmitData[1]
+#define TransmitLength   arrTransmitData[2]
+#define LSBLeftJoystickX arrTransmitData[3]
+#define MSBLeftJoystickX arrTransmitData[4]
+#define LSBLeftJoystickY arrTransmitData[5]
+#define MSBLeftJoystickY arrTransmitData[6]
+#define LSBRightJoystickX arrTransmitData[7]
+#define MSBRightJoystickX arrTransmitData[8]
+#define LSBRightJoystickY arrTransmitData[9]
+#define MSBRightJoystickY arrTransmitData[10]
+#define LSB_CRCresult     arrTransmitData[11]
+#define MSB_CRCresult     arrTransmitData[12]
 
-#define LSBRightJoystickX arrJoystickData[4]
-#define MSBRightJoystickX arrJoystickData[5]
-#define LSBRightJoystickY arrJoystickData[6]
-#define MSBRightJoystickY arrJoystickData[7]
-
-// short rightMotor, leftMotor;
-// unsigned char rightMotorLSB, rightMotorMSB, leftMotorMSB, leftMotorLSB;
-// unsigned char motorData[5];
 unsigned char packetLength, i;
 unsigned char LEDcounter = 0;
 union convertType {
     unsigned char byte[2];
     int integer;
 } convert;
+
     
     init();
     DelayMs(200);
     PORTBbits.RB0 = PORTBbits.RB1 = PORTBbits.RB2 = 1;    
+
+        
     while(1)
     {                       
         if (Timer2flag)
@@ -129,8 +132,7 @@ union convertType {
                 LEDcounter = 0;
             }           
             
-            readJoySticks();
-            
+            readJoySticks();           
                             
             intLeftJoystickX = ((short) leftJoystickX) - 127;    
             intLeftJoystickY = ((short) leftJoystickY) - 127;
@@ -153,34 +155,15 @@ union convertType {
             LSBRightJoystickY = convert.byte[0];
             MSBRightJoystickY = convert.byte[1];           
             
-            /*
-            rightMotor = intRightJoystickY - intRightJoystickX;
-            rightMotor = rightMotor * 8;
-            if (rightMotor > 1000) rightMotor = 1000;  // Was 500 for Roomba
-            if (rightMotor < -1000) rightMotor = -1000;
-
-            leftMotor = intRightJoystickY + intRightJoystickX;
-            leftMotor = leftMotor * 8;
-            if (leftMotor > 1000) leftMotor = 1000;
-            if (leftMotor < -1000) leftMotor = -1000;
-
-            convert.integer = leftMotor;
-            leftMotorLSB = convert.byte[0];
-            leftMotorMSB = convert.byte[1];
-
-            convert.integer = rightMotor;
-            rightMotorLSB = convert.byte[0];
-            rightMotorMSB = convert.byte[1];
-        
-            motorData[0] = rightMotorMSB;
-            motorData[1] = rightMotorLSB;
-            motorData[2] = leftMotorMSB;
-            motorData[3] = leftMotorLSB;                       
+            CommandByte = ROOMBA;
+            SubCommandByte = DRIVEDIRECT;   
+            TransmitLength = 13;
             
-            packetLength = BuildPacket(ROOMBA, DRIVEDIRECT, 4, motorData, packet);
-             */
-            packetLength = BuildPacket(ROOMBA, DRIVEDIRECT, 8, arrJoystickData, packet);        // Construct packet
-            if (packetLength < MAXPACKET) for (i = 0; i < packetLength; i++) putch(packet[i]);  // Transmit packet
+            convert.integer = CRCcalculate(arrTransmitData, TransmitLength-2);
+            LSB_CRCresult = convert.byte[0];
+            MSB_CRCresult = convert.byte[1];            
+            packetLength = BuildPacket(TransmitLength, arrTransmitData, arrPacket);        // Construct arrPacket
+            if (packetLength < MAXPACKET) for (i = 0; i < packetLength; i++) putch(arrPacket[i]);  // Transmit arrPacket
         }
     }
 }
@@ -348,22 +331,16 @@ unsigned char insertByte(unsigned char dataByte, unsigned char *ptrBuffer, unsig
     return (TRUE);
 }
 
-unsigned char BuildPacket(unsigned char command, unsigned char subCommand, unsigned char dataLength, unsigned char *ptrData, unsigned char *ptrPacket) 
+
+unsigned char BuildPacket(unsigned char dataLength, unsigned char *ptrCommandData, unsigned char *ptrPacket) 
 {
     unsigned char packetIndex = 0, i;
 
     if (dataLength <= MAXPACKET) {
-        ptrPacket[packetIndex++] = STX;
-        // ptrPacket[packetIndex++] = command;
-        if (!insertByte(command, ptrPacket, &packetIndex)) return(0);
-        if (!insertByte(subCommand, ptrPacket, &packetIndex)) return(0);
-        if (!insertByte(dataLength, ptrPacket, &packetIndex)) return(0);
-
-        for (i = 0; i < dataLength; i++){
-            if (!insertByte(ptrData[i], ptrPacket, &packetIndex)) return(0);
-        }
+        ptrPacket[packetIndex++] = STX;        
+        for (i = 0; i < dataLength; i++)
+            if (!insertByte(ptrCommandData[i], ptrPacket, &packetIndex)) return(0);        
         ptrPacket[packetIndex++] = ETX;
-
         return (packetIndex);
     } else return (0);
 }

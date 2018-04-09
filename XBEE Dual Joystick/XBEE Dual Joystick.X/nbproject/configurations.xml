@@ -4,8 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../../../../../../Program Files (x86)/Microchip/mplabc18/v3.47/h/p18f2520.h</itemPath>
-      <itemPath>../MMA8452_18F.h</itemPath>
       <itemPath>../delay.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
